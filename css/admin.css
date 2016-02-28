@@ -1,0 +1,158 @@
+#pp-compatibility li {
+    font-size: 16px;
+    line-height: 1.25em;
+    padding-left: 0.75em;
+}
+
+#pp-compatibility li:before,
+#pp-recommendations li:before {
+    margin-right: 4px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 50px;
+    color: #fff;
+}
+
+#pp-compatibility span,
+#pp-recommendations span {
+    display: block;
+    margin: 4px 0 12px 33px;
+    font-size: 13px;
+    max-width: 760px;
+    line-height: 16px;
+    color: #A63939;
+}
+
+#pp-compatibility li.good {
+    color: green;
+}
+
+#pp-compatibility li.good:before {
+    content: "√";
+    font-size: 14px;
+    background: green;
+    padding: 2px 9px 0px 7px;
+}
+
+#pp-compatibility li.bad {
+    color: #C73333;
+}
+
+#pp-compatibility li.bad:before {
+    content: "X";
+    font-size: 14px;
+    background: #C73333;
+    padding: 1px 7px;
+}
+
+#pp-recommendations {
+    font-size: 16px;
+    line-height: 1.25em;
+    padding-left: 0.75em;
+    color: #B68310;
+}
+
+#pp-recommendations span {
+    color: #855D02;
+}
+
+#pp-recommendations li:before {
+    content: "!";
+    background: #B68310;
+    padding: 0 9px;
+}
+
+#dismiss-recommendations a {
+    text-decoration: underline;
+}
+
+#dismiss-recommendations {
+    opacity: 0.65;
+}
+
+.ppi-intro {
+    font-size: 1.2em;
+}
+
+.narrow {
+    max-width: 760px;
+}
+
+/* install from token process */
+.installing-from-token #install-from-token-note,
+.too-many-attempts #install-from-token-note,
+.get-registration-failure #install-from-token-note,
+.save-registration-failure #install-from-token-note,
+#too-many-attempts-error-notice,
+#download-p6-failure-notice,
+#get-registration-failure-notice,
+#save-registration-failure-notice,
+#install-from-token-steps {
+    display: none;
+}
+
+.too-many-attempts #too-many-attempts-error-notice,
+.get-registration-failure #get-registration-failure-notice,
+.download-p6-failure #download-p6-failure-notice,
+.save-registration-failure #save-registration-failure-notice {
+    display: block;
+}
+
+.installing-from-token #install-from-token-steps,
+.ppi-installing-error #install-from-token-steps {
+    display: block;
+    margin-left: 1.5em;
+}
+
+.ppi-error-notice {
+    color: #C73333;
+    max-width: 760px;
+    font-size: 1.25em;
+}
+
+#install-from-token-steps .doing {
+    color: #00009F;
+}
+
+#install-from-token-steps .doing:after {
+    content: "(working)";
+}
+
+#install-from-token-steps .pending {
+    opacity: 0.6;
+    font-style: italic;
+}
+
+#install-from-token-steps .pending:after {
+    content: "(pending)";
+}
+
+#install-from-token-steps .success {
+    color: green;
+}
+
+#install-from-token-steps .success:after {
+    content: "(complete)";
+}
+
+#install-from-token-steps .failure {
+    color: #C73333;
+}
+
+#install-from-token-steps .failure:after {
+    content: "(failed)";
+}
+
+#p6-installed-successfully {
+    display: none;
+    font-size: 1.4em;
+}
+
+#p6-installed-successfully:before {
+    content: "√";
+    font-size: 16px;
+    background: green;
+    color: #fff;
+    padding: 2px 9px 0px 7px;
+    border-radius: 50px;
+}
