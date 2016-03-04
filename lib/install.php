@@ -15,7 +15,7 @@ function ppi_install_p6() {
         return ppi_install_wp_error($file);
     }
 
-    if (mime_content_type($file) !== 'application/zip') {
+    if (! ppi_is_zip($file)) {
         return ppi_install_pp_error($file);
     }
 
@@ -26,6 +26,29 @@ function ppi_install_p6() {
     }
 
     return array('success' => true);
+}
+
+/**
+ * Is the file a zip?
+ *
+ * Not all PHP 5.2+ servers have mime_content_type() or finfo.
+ * I borrowed the code from Drupal, so it should be pretty solid.
+ *
+ * @see http://api.drush.org/api/drush/includes!drush.inc/function/drush_mime_content_type/6.x
+ * @param string $file
+ * @return boolean
+ */
+function ppi_is_zip($file) {
+    $handle = fopen($file, 'rb');
+    $first = fread($handle, 2);
+    fclose($handle);
+
+    if ($first === false) {
+        return false;
+    }
+
+    $data = unpack('v', $first);
+    return $data[1] === 0x4b50;
 }
 
 /**
