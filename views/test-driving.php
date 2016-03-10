@@ -4,11 +4,11 @@
     You are currently test-driving ProPhoto 6.  That means that only users logged-in
     and cookied by their browser as admin users for this WordPress site have the
     ProPhoto 6 theme as their active theme.  All of your normal site visitors are still
-    seeing your active theme: <b><?php echo ppi_get_theme_name(); ?></b>.
+    seeing your active theme: <b><?php echo $nonTestDriveTheme; ?></b>.
 </p>
 
 <p>
-    You can disable test-drive mode <em>(switching back to <?php echo ppi_get_theme_name(); ?> for everyone)</em>, or fully go live for everyone with P6:
+    You can disable test-drive mode <em>(switching back to <?php echo $nonTestDriveTheme; ?> for everyone)</em>, or fully go live for everyone with P6:
 </p>
 
 <a href="<?php echo $disableTestDriveUrl; ?>" class="button button-secondary button-hero">
