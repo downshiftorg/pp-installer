@@ -137,23 +137,3 @@ function ppi_enable_test_drive() {
     header('Location: ' . admin_url('themes.php?activated=true'));
     exit;
 }
-
-/**
- * Backup the widget state
- *
- * @return void
- */
-function ppi_backup_widget_state() {
-    global $wpdb;
-
-    $sql = "SELECT * FROM {$wpdb->prefix}options WHERE option_name LIKE '%widget_%'";
-    $results = $wpdb->get_results($sql);
-
-    $backup = array('__template__' => get_option('template'));
-    foreach ($results as $result) {
-        $backup[$result->option_name] = unserialize($result->option_value);
-    }
-
-    update_option('ppi_widget_backup', $backup, false);
-}
-
