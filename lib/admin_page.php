@@ -87,7 +87,7 @@ function ppi_render_recommendations() {
     $phpOutdated = version_compare('5.5', PHP_VERSION) === 1;
     $memoryLimit = (int) ini_get('memory_limit');
     $memoryLimitLow = $memoryLimit < 256;
-    $missingImagick = class_exists('Imagick');
+    $missingImagick = !class_exists('Imagick');
 
     if ($phpOutdated || $memoryLimitLow || $missingImagick) {
         include(PPI_DIR . '/views/recommendations.php');
