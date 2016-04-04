@@ -9,6 +9,7 @@ function ppi_install_p6() {
     ppi_prep_install_p6();
     $token = ppi_get_token();
     $url = 'https://api.prophoto.com/download/prophoto/token/' . $token;
+    add_action('http_api_curl', 'ppi_set_ssl_version');
     $file = download_url($url);
 
     if (is_wp_error($file)) {
@@ -26,6 +27,17 @@ function ppi_install_p6() {
     }
 
     return array('success' => true);
+}
+
+/**
+ * Set curl ssl version to 1, to prevent SSL SNI issues
+ *
+ * @see https://github.com/netrivet/prophoto-issues/issues/445
+ * @param  resource $handle
+ * @return void
+ */
+function ppi_set_ssl_version($handle) {
+    curl_setopt($handle, CURLOPT_SSLVERSION, 1);
 }
 
 /**
