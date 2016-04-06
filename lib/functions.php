@@ -46,3 +46,14 @@ function ppi_p6_not_registered() {
       return false;
   }
 }
+
+/**
+ * Run on plugin deactivation. Disable test-drive mode, unfreezing any widgets
+ *
+ * @return void
+ */
+function ppi_deactivation() {
+  if (ppi_test_driving()) {
+    ppi_disable_test_drive();
+  }
+}
