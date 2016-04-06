@@ -20,7 +20,12 @@ function ppi_test_drive_init() {
         add_filter('stylesheet', 'ppi_filter_theme');
     }
 
-    if (! current_user_can('edit_theme_options')) {
+    $userIsAdmin = current_user_can('edit_theme_options');
+    if (! $userIsAdmin && ppi_test_driving()) {
+        add_filter('sidebars_widgets', 'ppi_use_non_test_drive_widgets');
+    }
+
+    if (! $userIsAdmin) {
         return;
     }
 
@@ -95,10 +100,20 @@ function ppi_handle_test_drive_changes() {
     }
 
     if (isset($_GET['ppi_go_live']) && ppi_get_p6_theme_slug()) {
-        ppi_disable_test_drive();
-        update_option('template', ppi_get_p6_theme_slug());
-        update_option('stylesheet', ppi_get_p6_theme_slug());
+        ppi_go_live();
     }
+}
+
+/**
+ * Switch out of test-drive mode by making P6 active
+ *
+ * @return void
+ */
+function ppi_go_live() {
+    ppi_move_theme_widgets_to_theme_mods();
+    delete_option('ppi_test_driving');
+    update_option('template', ppi_get_p6_theme_slug());
+    update_option('stylesheet', ppi_get_p6_theme_slug());
 }
 
 /**
@@ -123,6 +138,7 @@ function ppi_filter_theme($activeTheme) {
  * @return void
  */
 function ppi_disable_test_drive() {
+    ppi_unfreeze_theme_widgets();
     delete_option('ppi_test_driving');
 }
 
@@ -132,8 +148,12 @@ function ppi_disable_test_drive() {
  * @return void
  */
 function ppi_enable_test_drive() {
+    if (get_option('ppi_test_driving') === 'enabled' || ppi_get_p6_theme_slug() === get_option('template')) {
+        return;
+    }
+
+    ppi_freeze_theme_widgets();
     update_option('ppi_test_driving', 'enabled');
-    ppi_backup_widget_state();
     header('Location: ' . admin_url('themes.php?activated=true'));
     exit;
 }
