@@ -6,7 +6,11 @@
  * @return boolean
  */
 function ppi_php_compatible() {
-    return function_exists('stream_supports_lock');
+    if (version_compare('5.3.6', PHP_VERSION) === 1) {
+        return false;
+    }
+
+    return PHP_MAJOR_VERSION < 7;
 }
 
 /**
