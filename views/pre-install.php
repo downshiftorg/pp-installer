@@ -23,7 +23,7 @@
         <span>
             Please contact your webhost tech support and have them upgrade your
             server to use a faster, safer, and more modern version of PHP.
-            Tell them you need to be running at least on PHP version 5.3, but 5.4,
+            Tell them you need to be running at least on PHP version 5.3.6, but 5.4,
             5.5, and 5.6 are even better, because each newer version gets faster
             and more secure.
         </span>
