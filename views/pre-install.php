@@ -9,6 +9,14 @@
     <li class="good">
         Your PHP version is compatible.
     </li>
+    <?php } else if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION === 7) { ?>
+    <li class="bad">
+        Your PHP version is not compatible.
+        <span>
+            ProPhoto 6 is <strong>not yet</strong> compatible with <code>PHP 7</code>.
+            It will be very soon, but for now, you'll need to downgrade to PHP 5.6 or 5.5.
+        </span>
+    </li>
     <?php } else { ?>
     <li class="bad">
         Your PHP version is not compatible.
