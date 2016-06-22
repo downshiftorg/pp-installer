@@ -10,7 +10,7 @@ function ppi_php_compatible() {
         return false;
     }
 
-    return PHP_MAJOR_VERSION < 7;
+    return true;
 }
 
 /**
