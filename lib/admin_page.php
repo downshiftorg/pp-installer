@@ -63,7 +63,7 @@ function ppi_render_admin_page() {
 function ppi_render_test_driving_page() {
     $disableTestDriveUrl = admin_url('?ppi_disable_test_drive=1');
     $goLiveUrl = admin_url('themes.php?activated=true&ppi_go_live=1');
-    $nonTestDriveTheme = ppi_get_theme_name(get_option('template'));
+    $nonTestDriveTheme = ppi_get_non_test_drive_theme_name();
     include(PPI_DIR . '/views/test-driving.php');
 }
 

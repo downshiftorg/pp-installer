@@ -70,6 +70,15 @@ function ppi_get_theme_name($template = null) {
 }
 
 /**
+ * Get the theme name NOT being test-driven
+ *
+ * @return string
+ */
+function ppi_get_non_test_drive_theme_name() {
+    return ppi_get_theme_name(get_option('template'));
+}
+
+/**
  * Get a nonced link for activating P6
  *
  * @return string

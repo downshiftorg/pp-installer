@@ -28,7 +28,7 @@
 <p class="narrow">
     When test-driving ProPhoto 6, only logged-in admin users will have P6
     as their active theme.  All other users will see your active theme:
-    <b><?php echo ppi_get_theme_name(); ?></b>. This allows you to work on your
+    <b><?php echo $nonTestDriveTheme; ?></b>. This allows you to work on your
     conversion to P6 and your updated responsive design in privacy, until you're ready
     to go live.  In the meantime, all of your normal web visitors will see your
     existing design and functionality.
