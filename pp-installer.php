@@ -27,4 +27,5 @@ add_action('wp_ajax_ppi_api', 'ppi_api_route_request');
 add_action('admin_menu', 'ppi_add_menu_item');
 add_action('load-toplevel_page_prophoto-installer', 'ppi_admin_page_init');
 add_action('admin_enqueue_scripts', 'ppi_pointer_init');
+add_action('pp_container_binding', 'ppi_container_bindings');
 register_deactivation_hook(__FILE__, 'ppi_deactivation');

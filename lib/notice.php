@@ -12,6 +12,11 @@ function ppi_notice_test_driving() {
         return;
     }
 
+    // don't show on manage designs screen, it's super clear there
+    if (isset($_GET['page']) && $_GET['page'] === 'pp-designs') {
+        return;
+    }
+
     include PPI_DIR . '/views/notice-test-driving.php';
 }
 
