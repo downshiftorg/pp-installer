@@ -57,3 +57,41 @@ function ppi_deactivation() {
     ppi_disable_test_drive();
   }
 }
+
+/**
+ * Register P6 container bindings
+ *
+ * @param \NetRivet\Container\Container $container
+ * @return void
+ */
+function ppi_container_bindings($container) {
+  if (! ppi_test_driving()) {
+    return;
+  }
+
+  require_once(PPI_DIR . '/classes/ActiveDesign.php');
+
+  $container->singleton(
+    'ProPhoto\Core\Service\Design\ActiveDesign',
+    'ProPhoto\InstallerPlugin\TestDrive\ActiveDesign'
+  );
+}
+
+/**
+ * Bootstrap js data for ProPhoto Manage Designs screen
+ *
+ * @return void
+ */
+function ppi_manage_designs_bootstrap() {
+  if (! isset($_GET['page']) || $_GET['page'] !== 'pp-designs') {
+      return;
+  }
+
+  $wpTheme = wp_get_theme(get_option('template'));
+  $themeData = json_encode(array(
+      'name' => $wpTheme->get('Name'),
+      'screenshot' => $wpTheme->get_screenshot(),
+  ));
+
+  echo "<script>window.testDriveLiveTheme = $themeData;</script>";
+}
