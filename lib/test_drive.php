@@ -33,6 +33,7 @@ function ppi_test_drive_init() {
     if (ppi_test_driving()) {
         add_filter('all_admin_notices', 'ppi_notice_test_driving');
         add_action('admin_head', 'ppi_manage_designs_bootstrap');
+        add_action('pp_customizer_head', 'ppi_customizer_bootstrap');
     }
 
     ppi_handle_test_drive_changes();
