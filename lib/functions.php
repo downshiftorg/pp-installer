@@ -95,3 +95,12 @@ function ppi_manage_designs_bootstrap() {
 
   echo "<script>window.testDriveLiveTheme = $themeData;</script>";
 }
+
+/**
+ * Bootstrap js data from ProPhoto customizer
+ *
+ * @return void
+ */
+function ppi_customizer_bootstrap() {
+  echo "<script>window.testDriving = true;</script>";
+}
