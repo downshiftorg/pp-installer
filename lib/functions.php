@@ -104,3 +104,16 @@ function ppi_manage_designs_bootstrap() {
 function ppi_customizer_bootstrap() {
   echo "<script>window.testDriving = true;</script>";
 }
+
+/**
+ * When test-driving, a request to set user working design should change live design
+ *
+ * @param string $designId
+ * @param int $userId
+ * @param \ProPhoto\Core\Model\Settings\SiteSettingsInterface $settings
+ * @return void
+ */
+function ppi_set_working_design($designId, $userId, $settings) {
+  delete_user_meta($userId, 'pp_working_design_id');
+  $settings->set('live_design_id', $designId);
+}
