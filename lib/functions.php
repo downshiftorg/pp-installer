@@ -114,6 +114,16 @@ function ppi_customizer_bootstrap() {
  * @return void
  */
 function ppi_set_working_design($designId, $userId, $settings) {
-  delete_user_meta($userId, 'pp_working_design_id');
+  ppi_delete_user_working_designs();
   $settings->set('live_design_id', $designId);
+}
+
+/**
+ * Delete all user-meta designations of P6 "working" designs
+ *
+ * @return void
+ */
+function ppi_delete_user_working_designs() {
+  global $wpdb;
+  $wpdb->delete($wpdb->usermeta, array('meta_key' => 'pp_working_design_id'));
 }

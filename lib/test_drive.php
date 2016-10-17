@@ -155,6 +155,7 @@ function ppi_enable_test_drive() {
         return;
     }
 
+    ppi_delete_user_working_designs();
     ppi_freeze_theme_widgets();
     update_option('ppi_test_driving', 'enabled');
     header('Location: ' . admin_url('themes.php?activated=true'));
