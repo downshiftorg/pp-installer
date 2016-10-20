@@ -97,11 +97,11 @@ function ppi_manage_designs_bootstrap() {
 }
 
 /**
- * Bootstrap js data from ProPhoto customizer
+ * Bootstrap js data indicating we are test-driving
  *
  * @return void
  */
-function ppi_customizer_bootstrap() {
+function ppi_testdriving_bootstrap() {
   echo "<script>window.testDriving = true;</script>";
 }
 

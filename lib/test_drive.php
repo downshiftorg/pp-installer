@@ -33,7 +33,9 @@ function ppi_test_drive_init() {
     if (ppi_test_driving()) {
         add_filter('all_admin_notices', 'ppi_notice_test_driving');
         add_action('admin_head', 'ppi_manage_designs_bootstrap');
-        add_action('pp_customizer_head', 'ppi_customizer_bootstrap');
+        add_action('pp_customizer_head', 'ppi_testdriving_bootstrap');
+        add_action('pp_begin_body', 'ppi_testdriving_bootstrap');
+        add_action('admin_head', 'ppi_testdriving_bootstrap');
         add_action('pp_working_design_id_set', 'ppi_set_working_design', 10, 3);
         add_filter('pp_notifications_config', 'ppi_notifications');
     }
