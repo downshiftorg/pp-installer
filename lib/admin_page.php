@@ -95,7 +95,7 @@ function ppi_render_recommendations() {
 }
 
 /**
- * Render test-drive or installation info, based on install/token status
+ * Render test-drive or installation info
  *
  * @return void
  */
@@ -105,20 +105,19 @@ function ppi_render_install_or_test_drive() {
         return;
     }
 
-    $token = ppi_get_token();
-    if ($token) {
-        ppi_render_install_from_token();
+    if (ppi_get_registration()) {
+        ppi_render_install_from_registration();
         return;
     }
 }
 
 /**
- * Render view for installing theme from plugin token
+ * Render view for installing theme from registration data
  *
  * @return void
  */
-function ppi_render_install_from_token() {
-    include(PPI_DIR . '/views/install-from-token.php');
+function ppi_render_install_from_registration() {
+    include(PPI_DIR . '/views/install-from-registration.php');
 }
 
 /**
@@ -127,7 +126,7 @@ function ppi_render_install_from_token() {
  * @return void
  */
 function ppi_bootstrap_js() {
-    $token = ppi_get_token();
+    list($lineItemId, $userToken) = ppi_get_registration();
     $ajaxUrl = admin_url('admin-ajax.php');
 
     include(PPI_DIR . '/views/bootstrap-js.php');

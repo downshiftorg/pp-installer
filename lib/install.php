@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Attempt to install P6 by authenticated token download from ProPhoto API
+ * Attempt to install P6 from registration data
  *
  * @return array
  */
 function ppi_install_p6() {
     ppi_prep_install_p6();
-    $token = ppi_get_token();
-    $url = 'https://api.prophoto.com/download/prophoto/token/' . $token;
-    add_action('http_api_curl', 'ppi_set_ssl_version');
+    list($lineItemId, $userToken) = ppi_get_registration();
+    $endpoint = PROPHOTO_API_URL . "/line-items/{$lineItemId}/download";
+    $url = $endpoint .= "?user_token={$userToken}&installer=0";
     $file = download_url($url);
 
     if (is_wp_error($file)) {
@@ -112,6 +112,8 @@ function ppi_prep_install_p6() {
 
     // initialize the $wp_filesystem global object
     WP_Filesystem();
+
+    add_action('http_api_curl', 'ppi_set_ssl_version');
 
     @ini_set('max_execution_time', 300);
 }
