@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Get the unique installer plugin token, if available
+ * Get the unique installer plugin registration data, if available
  *
  * @return string|null
  */
-function ppi_get_token() {
-    $tokenPath = PPI_DIR . '/token.php';
+function ppi_get_registration() {
+    $registrationPath = PPI_DIR . '/registration.php';
 
-    if (! @file_exists($tokenPath)) {
+    if (! @file_exists($registrationPath)) {
         return null;
     }
 
-    return include($tokenPath);
+    return include($registrationPath);
 }
 
 /**
