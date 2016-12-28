@@ -4,13 +4,14 @@ Plugin Name: ProPhoto 6 Installer
 Plugin URI: https://github.com/netrivet/prophoto-installer-plugin
 Description: Theme installer plugin for ProPhoto version 6. Checks server compatibility, auto-registers, and allows test-driving P6 while safely keeping another theme active.
 Author: ProPhoto
-Version: 6.0.5
-Author URI: https://www.prophoto.com/
+Version: 6.0.6
+Author URI: https://pro.photo
 License: MIT
  */
 
 define('PPI_DIR', dirname(__FILE__));
 define('PPI_URL', plugin_dir_url(__FILE__));
+defined('PROPHOTO_API_URL') || define('PROPHOTO_API_URL', 'https://api.pro.photo');
 
 foreach ((array) glob(PPI_DIR . '/lib/*.php') as $file) {
     require_once($file);

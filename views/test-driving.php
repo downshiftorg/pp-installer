@@ -48,5 +48,5 @@
 </p>
 
 <p class="narrow">
-    You can also <a href="https://www.prophoto.com/contact/">contact us</a> for help at any time!
+    You can also <a href="https://pro.photo/contact">contact us</a> for help at any time!
 </p>

@@ -52,7 +52,7 @@ function ppi_api_post_save_option() {
         return;
     }
 
-    if ($payload['value'] === get_option($payload['key'], true)) {
+    if ($payload['value'] === get_option($payload['key'])) {
         status_header(204);
         return;
     }
