@@ -84,7 +84,7 @@ function ppi_render_p6_installed_page() {
  * @return void
  */
 function ppi_render_recommendations() {
-    $phpOutdated = version_compare('5.5', PHP_VERSION) === 1;
+    $phpOutdated = version_compare('5.6', PHP_VERSION) === 1;
     $memoryLimit = (int) ini_get('memory_limit');
     $memoryLimitLow = $memoryLimit < 256;
     $missingImagick = !class_exists('Imagick');
