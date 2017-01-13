@@ -6,8 +6,8 @@
  * @return void
  */
 function ppi_admin_page_init() {
-    wp_enqueue_style('ppi_css', PPI_URL . 'css/admin.css');
-    wp_enqueue_script('ppi_js', PPI_URL . 'js/admin.js');
+    wp_enqueue_style('ppi_css', PPI_URL . 'css/admin.css', array(), time());
+    wp_enqueue_script('ppi_js', PPI_URL . 'js/admin.js', array(), time());
     add_action('admin_head', 'ppi_bootstrap_js');
 }
 
