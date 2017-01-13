@@ -14,15 +14,14 @@
         <li>
             Your PHP version is out of date
             <span>
-                While it is compatible with P6, the version of <code>PHP</code> (the
-                computer code langage that powers WordPress and ProPhoto) your host
-                is running is fairly outdated. You are running PHP <code>
-                <?php echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION; ?></code>,
-                which is slower and less secure than modern versions. We recommend
-                that you call your webhost and ask them to upgrade your PHP version
-                to <code>5.5</code> or <code>5.6</code>. Getting updated to the highest
-                version of PHP you can should make your site run faster, be more secure,
-                and also will guarantee compatibility with future versions of ProPhoto.
+                Your PHP version:
+                <code><?php echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION; ?></code>,
+                is technically compatible, but is insecure and outdated. We recommend
+                that you call your webhost and ask them to upgrade your PHP to at
+                least <code>5.6</code>, or ideally <code>7.0</code> or <code>7.1</code>.
+                Version <code>7.0</code> and higher run <em>nearly twice as fast</em>
+                as older versions, and are more secure, so it's definitely worth a quick
+                call to get updated.
             </span>
         </li>
         <?php } ?>
