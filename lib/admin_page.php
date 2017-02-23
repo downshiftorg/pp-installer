@@ -39,7 +39,8 @@ function ppi_render_admin_page() {
     $wpIsCompatible = ppi_wp_compatible();
     $gdIsCompatible = ppi_gd_compatible();
     $jsonIsComptible = ppi_json_compatible();
-    $isCompatible = $phpIsCompatible && $wpIsCompatible && $gdIsCompatible && $jsonIsComptible;
+    $mysqlCompatible = ppi_mysql_permission_compatible();
+    $isCompatible = $phpIsCompatible && $wpIsCompatible && $gdIsCompatible && $jsonIsComptible && $mysqlCompatible;
 
     if (! $isCompatible || ! ppi_p6_is_installed()) {
         include(PPI_DIR . '/views/pre-install.php');

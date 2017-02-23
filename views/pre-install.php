@@ -66,7 +66,23 @@
         Your server is missing the required <code>json</code> extension.
         <span>
             Please contact your webhost technical support and ask them to make sure
-            you are on a build of PHP containing the <cod>json</cod> extension.
+            you are on a build of PHP containing the <code>json</code> extension.
+        </span>
+    </li>
+    <?php } ?>
+
+    <?php if ($mysqlCompatible) { ?>
+    <li class="good">
+        Your server has proper MySQL permissions.
+    </li>
+    <?php } else { ?>
+    <li class="bad">
+        Your MySQL permissions are incorrect.
+        <span>
+            Please contact your webhost technical support and ask them to increase
+            the permissions of database user <code><?php echo DB_USER; ?></code>
+            for the database <?php echo DB_NAME; ?> to include
+            <code>DROP</code> and <code>ALTER</code> privileges.
         </span>
     </li>
     <?php } ?>

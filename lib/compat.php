@@ -39,3 +39,46 @@ function ppi_gd_compatible() {
 function ppi_json_compatible() {
     return extension_loaded('json');
 }
+
+/**
+ * Check if an individual grant string contains necessary permissions
+ *
+ * @param string $grant
+ * @param string $db
+ * @return boolean
+ */
+function ppi_mysql_grant_compatible($grant, $db) {
+    $escaped = str_replace('_', '\_', $db);
+
+    if (strpos($grant, $escaped) === false && strpos($grant, '*.*') === false) {
+        return false;
+    }
+
+    if (preg_match('/\bALL\b/', $grant)) {
+        return true;
+    }
+
+    if (preg_match('/\bALTER\b/', $grant) && preg_match('/\bDROP\b/', $grant)) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Does the mysql user have permissions
+ *
+ * @return boolean
+ */
+function ppi_mysql_permission_compatible() {
+    global $wpdb;
+    $db = DB_NAME;
+    $grants = $wpdb->get_results('SHOW GRANTS FOR CURRENT_USER', ARRAY_A);
+    foreach ($grants as $row) {
+        $grant = current($row);
+        if (ppi_mysql_grant_compatible($grant, $db)) {
+            return true;
+        }
+    }
+    return false;
+}
