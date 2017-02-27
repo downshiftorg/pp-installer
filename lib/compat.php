@@ -50,7 +50,7 @@ function ppi_json_compatible() {
 function ppi_mysql_grant_compatible($grant, $db) {
     $escaped = str_replace('_', '\_', $db);
 
-    if (strpos($grant, $escaped) === false && strpos($grant, '*.*') === false) {
+    if (strpos($grant, $db) === false && strpos($grant, $escaped) === false && strpos($grant, '*.*') === false) {
         return false;
     }
 
