@@ -49,8 +49,13 @@ function ppi_json_compatible() {
  */
 function ppi_mysql_grant_compatible($grant, $db) {
     $escaped = str_replace('_', '\_', $db);
+    $wildcard = preg_replace('/_([\w-]+)/', '__', $escaped);
 
-    if (strpos($grant, $db) === false && strpos($grant, $escaped) === false && strpos($grant, '*.*') === false) {
+    // ensure the grant is for a particular db
+    if (strpos($grant, $db) === false
+        && strpos($grant, $escaped) === false
+        && strpos($grant, '*.*') === false
+        && strpos($grant, $wildcard) === false) {
         return false;
     }
 
@@ -74,6 +79,7 @@ function ppi_mysql_permission_compatible() {
     global $wpdb;
     $db = DB_NAME;
     $grants = $wpdb->get_results('SHOW GRANTS FOR CURRENT_USER', ARRAY_A);
+
     foreach ($grants as $row) {
         $grant = current($row);
         if (ppi_mysql_grant_compatible($grant, $db)) {
