@@ -19,7 +19,7 @@ function ppi_php_compatible() {
  * @return boolean
  */
 function ppi_wp_compatible() {
-    return function_exists('do_shortcodes_in_html_tags');
+    return function_exists('rest_url');
 }
 
 /**
