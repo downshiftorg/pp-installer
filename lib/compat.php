@@ -52,10 +52,10 @@ function ppi_mysql_grant_compatible($grant, $db) {
     $wildcard = preg_replace('/_([\w-]+)/', '__', $escaped);
 
     // ensure the grant is for a particular db
-    if (strpos($grant, $db) === false
-        && strpos($grant, $escaped) === false
+    if (stripos($grant, $db) === false
+        && stripos($grant, $escaped) === false
         && strpos($grant, '*.*') === false
-        && strpos($grant, $wildcard) === false) {
+        && stripos($grant, $wildcard) === false) {
         return false;
     }
 
