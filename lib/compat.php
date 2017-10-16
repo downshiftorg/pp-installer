@@ -88,3 +88,25 @@ function ppi_mysql_permission_compatible() {
     }
     return false;
 }
+
+/**
+ * Is the hosting compatible? (i.e. -- NOT wordpress.com)
+ *
+ * @return boolean
+ */
+function ppi_hosting_compatible() {
+    $domain = ppi_extract_domain(home_url());
+    if (! $domain) {
+        return true;
+    }
+
+    $records = dns_get_record($domain, DNS_NS);
+    $wpPattern = '/^ns[0-9]\.wordpress\.com$/i';
+    foreach ($records as $entry) {
+        if (isset($entry['target']) && preg_match($wpPattern, $entry['target'])) {
+            return false;
+        }
+    }
+
+    return true;
+}
