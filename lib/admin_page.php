@@ -40,7 +40,13 @@ function ppi_render_admin_page() {
     $gdIsCompatible = ppi_gd_compatible();
     $jsonIsComptible = ppi_json_compatible();
     $mysqlCompatible = ppi_mysql_permission_compatible();
-    $isCompatible = $phpIsCompatible && $wpIsCompatible && $gdIsCompatible && $jsonIsComptible && $mysqlCompatible;
+    $hostingCompatible = ppi_hosting_compatible();
+    $isCompatible = $phpIsCompatible
+        && $wpIsCompatible
+        && $gdIsCompatible
+        && $jsonIsComptible
+        && $mysqlCompatible
+        && $hostingCompatible;
 
     if (! $isCompatible || ! ppi_p6_is_installed()) {
         include(PPI_DIR . '/views/pre-install.php');

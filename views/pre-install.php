@@ -86,6 +86,25 @@
         </span>
     </li>
     <?php } ?>
+
+    <?php if ($hostingCompatible) { ?>
+    <li class="good">
+        Your hosting appears to be compatible.
+    </li>
+    <?php } else { ?>
+    <li class="bad">
+        WordPress.com business hosting is NOT supported.
+        <span>
+            As indicated on our <a href="https://help.pro.photo/?page_id=469">support
+            article</a> listing compatible web hosts -- WordPress.com is <i>NOT</i> a supported
+            webhost. This is due to the fact that WordPress.com completely restricts all
+            FTP access, making it impossible for us to troubleshoot and debug any problems
+            should they arise. We take support very seriously and do not feel comfortable
+            having our users on web-hosting platforms where we cannot give them full support.
+            You will need to choose a different web host in order to use ProPhoto.
+        </span>
+    </li>
+    <?php } ?>
 </ul>
 
 <?php if (! $isCompatible) { ?>

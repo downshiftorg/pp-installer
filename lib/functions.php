@@ -127,3 +127,24 @@ function ppi_delete_user_working_designs() {
   global $wpdb;
   $wpdb->delete($wpdb->usermeta, array('meta_key' => 'pp_working_design_id'));
 }
+
+
+/**
+ * Extract registerable domain from string input
+ *
+ * @param string $url
+ * @return string|false
+ */
+function ppi_extract_domain($url) {
+    if (! is_string($url)) {
+        return false;
+    }
+
+    $pattern = "/^(?:\w+:\/\/)?[^:?#\/\s]*?([^.\s]+\.(?:[a-z]{2,}|co\.uk|org\.uk|ac\.uk|net\.au|org\.au|com\.au|co\.za|co\.nz|com\.br|com\.ph|fot\.br|com\.sg|com\.tw|com\.pl))(?:[:?#\/]|$)/xi";
+    preg_match($pattern, $url, $matches);
+    if (! isset($matches[1])) {
+        return false;
+    }
+
+    return strtolower($matches[1]);
+}
