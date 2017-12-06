@@ -117,7 +117,7 @@
 
 <?php return; } ?>
 <p>
-    Huzzah! You're site is totally compatible with ProPhoto 6.
+    Huzzah! Your site is totally compatible with ProPhoto 6.
 </p>
 
 <?php if (! get_option('ppi_hide_recommendations') ) ppi_render_recommendations(); ?>
