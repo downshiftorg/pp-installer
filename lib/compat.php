@@ -86,6 +86,41 @@ function ppi_mysql_permission_compatible() {
             return true;
         }
     }
+
+    return ppi_can_create_alter_drop_table();
+}
+
+/**
+ * Check if mysql user can CREATE, ALTER, DROP by actually trying
+ *
+ * @return boolean
+ */
+function ppi_can_create_alter_drop_table() {
+    global $wpdb;
+    $wpdb->suppress_errors();
+    $testTable = "{$wpdb->prefix}ppi_priv_test";
+
+    // CREATE
+    $wpdb->query("CREATE TABLE IF NOT EXISTS $testTable (id INT)");
+    if (! $wpdb->get_var("SHOW TABLES LIKE '$testTable'")) {
+        return false;
+    }
+
+    // ALTER
+    $wpdb->query("ALTER TABLE $testTable ADD COLUMN `add` INT");
+    $wpdb->insert($testTable, ['id' => 1, 'add' => 2]);
+    $results = $wpdb->get_results("SELECT * FROM $testTable WHERE `add` = 2");
+    if (empty($results)) {
+        $wpdb->query("DROP TABLE {$wpdb->prefix}ppi_priv_test");
+        return false;
+    }
+
+    // DROP
+    $wpdb->query("DROP TABLE {$wpdb->prefix}ppi_priv_test");
+    if (! $wpdb->get_var("SHOW TABLES LIKE '$testTable'")) {
+        return true;
+    }
+
     return false;
 }
 
