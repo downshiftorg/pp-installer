@@ -41,6 +41,7 @@ function ppi_render_admin_page() {
     $jsonIsComptible = ppi_json_compatible();
     $mysqlCompatible = ppi_mysql_permission_compatible();
     $hostingCompatible = ppi_hosting_compatible();
+
     $isCompatible = $phpIsCompatible
         && $wpIsCompatible
         && $gdIsCompatible
