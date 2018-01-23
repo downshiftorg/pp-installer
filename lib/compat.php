@@ -108,7 +108,7 @@ function ppi_can_create_alter_drop_table() {
 
     // ALTER
     $wpdb->query("ALTER TABLE $testTable ADD COLUMN `add` INT");
-    $wpdb->insert($testTable, ['id' => 1, 'add' => 2]);
+    $wpdb->insert($testTable, array('id' => 1, 'add' => 2));
     $results = $wpdb->get_results("SELECT * FROM $testTable WHERE `add` = 2");
     if (empty($results)) {
         $wpdb->query("DROP TABLE {$wpdb->prefix}ppi_priv_test");
