@@ -22,12 +22,12 @@ function ppi_api_route_request() {
 }
 
 /**
- * Handle GET requests to install P6
+ * Handle GET requests to install P7
  *
  * @return void
  */
-function ppi_api_get_install_p6() {
-    $result = ppi_install_p6();
+function ppi_api_get_install_p7() {
+    $result = ppi_install_p7();
 
     if ($result['success'] === true) {
         status_header(204);

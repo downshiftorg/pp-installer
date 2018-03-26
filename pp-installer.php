@@ -17,8 +17,6 @@ foreach ((array) glob(PPI_DIR . '/lib/*.php') as $file) {
     require_once($file);
 }
 
-add_action('admin_head-widgets.php', 'ppi_prevent_delete_inactive_widgets');
-
 if (ppi_p6_is_active_theme()) {
     return;
 }

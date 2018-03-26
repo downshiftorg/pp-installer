@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Is the user currently test driving P6?
+ * Is the user currently test driving P7?
  *
  * @return boolean
  */
@@ -42,7 +42,7 @@ function ppi_test_drive_init() {
 
     ppi_handle_test_drive_changes();
 
-    if (ppi_p6_is_active_theme()) {
+    if (ppi_p7_is_active_theme()) {
         ppi_disable_test_drive();
     }
 }
@@ -105,21 +105,21 @@ function ppi_handle_test_drive_changes() {
         ppi_notice_test_drive_disabled();
     }
 
-    if (isset($_GET['ppi_go_live']) && ppi_get_p6_theme_slug()) {
+    if (isset($_GET['ppi_go_live']) && ppi_get_p7_theme_slug()) {
         ppi_go_live();
     }
 }
 
 /**
- * Switch out of test-drive mode by making P6 active
+ * Switch out of test-drive mode by making P7 active
  *
  * @return void
  */
 function ppi_go_live() {
     ppi_move_theme_widgets_to_theme_mods();
     delete_option('ppi_test_driving');
-    update_option('template', ppi_get_p6_theme_slug());
-    update_option('stylesheet', ppi_get_p6_theme_slug());
+    update_option('template', ppi_get_p7_theme_slug());
+    update_option('stylesheet', ppi_get_p7_theme_slug());
 }
 
 /**
@@ -129,13 +129,13 @@ function ppi_go_live() {
  * @return string
  */
 function ppi_filter_theme($activeTheme) {
-    $p6 = ppi_get_p6_theme_slug();
+    $p7 = ppi_get_p7_theme_slug();
 
-    if (! $p6) {
+    if (! $p7) {
         return $activeTheme;
     }
 
-    return $p6;
+    return $p7;
 }
 
 /**
@@ -154,7 +154,7 @@ function ppi_disable_test_drive() {
  * @return void
  */
 function ppi_enable_test_drive() {
-    if (get_option('ppi_test_driving') === 'enabled' || ppi_get_p6_theme_slug() === get_option('template')) {
+    if (get_option('ppi_test_driving') === 'enabled' || ppi_get_p7_theme_slug() === get_option('template')) {
         return;
     }
 

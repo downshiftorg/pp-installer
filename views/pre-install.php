@@ -1,4 +1,4 @@
-<h1>ProPhoto 6 Installer</h1>
+<h1>ProPhoto 7 Installer</h1>
 
 <hr />
 
@@ -15,7 +15,7 @@
         <span>
             Please contact your webhost tech support and have them upgrade your
             server to use a faster, safer, and more modern version of PHP.
-            Tell them you need to be running at least PHP version 5.3.6, but
+            Tell them you need to be running at least PHP version 5.4.0, but
             5.6 or higher is even better, because each newer version gets faster
             and more secure. If your host offers PHP 7.0 or 7.1 make sure you get
             on one of those versions, as they are nearly twice as fast as older
@@ -32,9 +32,9 @@
     <li class="bad">
         Your WordPress version is not compatible.
         <span>
-            ProPhoto 6 requires that you are running a very recent version of
+            ProPhoto 7 requires that you are running a very recent version of
             WordPress, which is also the most effective method of keeping your
-            website safe and secure from attacks. Before you can use ProPhoto 6,
+            website safe and secure from attacks. Before you can use ProPhoto 7,
             you'll need to <a href="<?php echo admin_url('update-core.php'); ?>">
             update your WordPress version</a>.
         </span>
@@ -109,15 +109,15 @@
 
 <?php if (! $isCompatible) { ?>
 <p>
-    Sorry, your site is not yet ready to use ProPhoto 6. Please read the
+    Sorry, your site is not yet ready to use ProPhoto 7. Please read the
     above area(s) highlighted in red, and work with your webhost technical support
     to resolve them. Once you've gotten everything green, this page will change
-    and show you more options for continuing with the installation of ProPhoto 6.
+    and show you more options for continuing with the installation of ProPhoto 7.
 </p>
 
 <?php return; } ?>
 <p>
-    Huzzah! Your site is totally compatible with ProPhoto 6.
+    Huzzah! Your site is totally compatible with ProPhoto 7.
 </p>
 
 <?php if (! get_option('ppi_hide_recommendations') ) ppi_render_recommendations(); ?>

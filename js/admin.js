@@ -24,23 +24,23 @@
   }
 
   /**
-   * Process successful installation of ProPhoto 6
+   * Process successful installation of ProPhoto 7
    *
    * @return {void}
    */
-  function install_p6_done() {
-    $('#download-p6').removeClass('pending').addClass('success');
-    $('#p6-installed-successfully').show();
+  function install_p7_done() {
+    $('#download-p7').removeClass('pending').addClass('success');
+    $('#p7-installed-successfully').show();
   }
 
   /**
-   * Process failure to install ProPhoto 6
+   * Process failure to install ProPhoto 7
    *
    * @return {void}
    */
-  function install_p6_fail() {
-    $('#download-p6').removeClass('pending').addClass('failure');
-    $body.addClass('download-p6-failure ppi-installing-error');
+  function install_p7_fail() {
+    $('#download-p7').removeClass('pending').addClass('failure');
+    $body.addClass('download-p7-failure ppi-installing-error');
   }
 
   $(document).ready(function(){
@@ -51,9 +51,9 @@
       $(this).remove();
       $body.addClass('installing-from-registration');
 
-      $.get(window.ppi.links.install_p6)
-        .done(install_p6_done)
-        .fail(install_p6_fail);
+      $.get(window.ppi.links.install_p7)
+        .done(install_p7_done)
+        .fail(install_p7_fail);
     });
 
     $('#dismiss-recommendations a').on('click', function() {

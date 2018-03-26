@@ -81,14 +81,14 @@
 /* install from registration process */
 .installing-from-registration #install-from-registration-note,
 #too-many-attempts-error-notice,
-#download-p6-failure-notice,
+#download-p7-failure-notice,
 #get-registration-failure-notice,
 #save-registration-failure-notice,
 #install-from-registration-steps {
     display: none;
 }
 
-.download-p6-failure #download-p6-failure-notice {
+.download-p7-failure #download-p7-failure-notice {
     display: block;
 }
 
@@ -137,12 +137,12 @@
     content: "(failed)";
 }
 
-#p6-installed-successfully {
+#p7-installed-successfully {
     display: none;
     font-size: 1.4em;
 }
 
-#p6-installed-successfully:before {
+#p7-installed-successfully:before {
     content: "√";
     font-size: 16px;
     background: green;

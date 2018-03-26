@@ -20,7 +20,7 @@ function ppi_admin_page_init() {
 function ppi_add_menu_item() {
     add_menu_page(
         'ProPhoto Installer',
-        ppi_p6_is_installed() ? 'P6 Test Drive' : 'P6 Installer',
+        ppi_p7_is_installed() ? 'P7 Test Drive' : 'P7 Installer',
         'edit_theme_options',
         'prophoto-installer',
         'ppi_render_admin_page',
@@ -49,7 +49,7 @@ function ppi_render_admin_page() {
         && $mysqlCompatible
         && $hostingCompatible;
 
-    if (! $isCompatible || ! ppi_p6_is_installed()) {
+    if (! $isCompatible || ! ppi_p7_is_installed()) {
         include(PPI_DIR . '/views/pre-install.php');
         return;
     }
@@ -59,12 +59,12 @@ function ppi_render_admin_page() {
         return;
     }
 
-    ppi_render_p6_installed_page();
+    ppi_render_p7_installed_page();
 
 }
 
 /**
- * Render the admin page when the user is test-driving P6
+ * Render the admin page when the user is test-driving P7
  *
  * @return void
  */
@@ -76,23 +76,23 @@ function ppi_render_test_driving_page() {
 }
 
 /**
- * Render admin page when P6 is installed but not active or being test-driven
+ * Render admin page when P7 is installed but not active or being test-driven
  *
  * @return void
  */
-function ppi_render_p6_installed_page() {
+function ppi_render_p7_installed_page() {
     $testDriveUrl = admin_url('?ppi_enable_test_drive=1');
-    $activateUrl = ppi_activate_p6_link();
+    $activateUrl = ppi_activate_p7_link();
     include(PPI_DIR . '/views/installed.php');
 }
 
 /**
- * Render recommendations for P6
+ * Render recommendations for P7
  *
  * @return void
  */
 function ppi_render_recommendations() {
-    $phpOutdated = version_compare('5.6', PHP_VERSION) === 1;
+    $phpOutdated = version_compare('7.2', PHP_VERSION) === 1;
     $memoryLimit = (int) ini_get('memory_limit');
     $memoryLimitLow = $memoryLimit < 256;
     $missingImagick = !class_exists('Imagick');
@@ -108,7 +108,7 @@ function ppi_render_recommendations() {
  * @return void
  */
 function ppi_render_install_or_test_drive() {
-    if (ppi_p6_is_installed()) {
+    if (ppi_p7_is_installed()) {
         ppi_render_test_drive();
         return;
     }

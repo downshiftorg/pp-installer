@@ -6,7 +6,7 @@
  * @return void
  */
 function ppi_notice_test_driving() {
-    if (ppi_p6_not_registered()) {
+    if (ppi_p7_not_registered()) {
         $registerUrl = admin_url('themes.php?activated=true');
         include PPI_DIR . '/views/notice-test-driving-unregistered.php';
         return;

@@ -34,6 +34,6 @@ function ppi_pointer_init() {
  */
 function ppi_pointer_markup() {
    $markup  = '<h3>ProPhoto Installer</h3>';
-   $markup .= '<p>Click here to download, test-drive, and activate ProPhoto 6!</p>';
+   $markup .= '<p>Click here to download, test-drive, and activate ProPhoto 7!</p>';
    return $markup;
 }

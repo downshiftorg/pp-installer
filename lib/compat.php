@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Is the current PHP version high enough to run P6?
+ * Is the current PHP version high enough to run P7?
  *
  * @return boolean
  */

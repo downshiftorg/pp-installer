@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Attempt to install P6 from registration data
+ * Attempt to install P7 from registration data
  *
  * @return array
  */
-function ppi_install_p6() {
-    ppi_prep_install_p6();
+function ppi_install_p7() {
+    ppi_prep_install_p7();
     list($lineItemId, $userToken) = ppi_get_registration();
     $endpoint = PROPHOTO_API_URL . "/line-items/{$lineItemId}/download";
     $url = $endpoint .= "?user_token={$userToken}&installer=0";
@@ -88,7 +88,7 @@ function ppi_install_pp_error($file) {
     if (is_array($data) && isset($data['message'])) {
         $message = $data['message'];
     } else {
-        $message = 'Error downloading P6 from ProPhoto site.';
+        $message = 'Error downloading P7 from ProPhoto site.';
     }
 
     return array(
@@ -98,11 +98,11 @@ function ppi_install_pp_error($file) {
 }
 
 /**
- * Do some housekeeping before attempting to download P6 theme
+ * Do some housekeeping before attempting to download P7 theme
  *
  * @return void
  */
-function ppi_prep_install_p6() {
+function ppi_prep_install_p7() {
     // ensure required file functions are loaded
     require_once ABSPATH . 'wp-admin/includes/file.php';
 

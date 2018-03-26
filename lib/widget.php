@@ -6,9 +6,9 @@
  * @return void
  */
 function ppi_unfreeze_theme_widgets() {
-    $p6theme = ppi_get_p6_theme_slug();
+    $p7theme = ppi_get_p7_theme_slug();
     $sidebarsWidgets = wp_get_sidebars_widgets();
-    update_option("ppi_theme_widgets_{$p6theme}", $sidebarsWidgets);
+    update_option("ppi_theme_widgets_{$p7theme}", $sidebarsWidgets);
 
     $theme = get_option('template');
     $themeWidgets = get_option("ppi_theme_widgets_{$theme}", array());
@@ -25,9 +25,9 @@ function ppi_freeze_theme_widgets() {
     $sidebarsWidgets = wp_get_sidebars_widgets();
     update_option("ppi_theme_widgets_{$theme}", $sidebarsWidgets);
 
-    $p6theme = ppi_get_p6_theme_slug();
-    $p6Widgets = get_option("ppi_theme_widgets_{$p6theme}", array());
-    update_option('sidebars_widgets', $p6Widgets);
+    $p7theme = ppi_get_p7_theme_slug();
+    $p7Widgets = get_option("ppi_theme_widgets_{$p7theme}", array());
+    update_option('sidebars_widgets', $p7Widgets);
 }
 
 /**
@@ -59,7 +59,7 @@ function ppi_move_theme_widgets_to_theme_mods() {
  * @return void
  */
 function ppi_prevent_delete_inactive_widgets() {
-    $warning = 'Be careful deleting! These widgets may be used by ProPhoto 6.';
+    $warning = 'Be careful deleting! These widgets may be used by ProPhoto 7.';
     $css  = "#widgets-left .sidebar-description p:after {content: ' $warning'}";
     $css .= '.inactive-sidebar > .description, .remove-inactive-widgets {display: none}';
     echo "<style>$css</style>";

@@ -16,11 +16,6 @@ class ActiveDesign extends BaseActiveDesign
      */
     public function getId()
     {
-        // backwards compat for pre ProPhoto 6.14.0
-        if (null === $this->settings->get('live_design_id')) {
-            return parent::getId();
-        }
-
         if (! $this->id) {
             $this->id = $this->settings->get('live_design_id');
         }

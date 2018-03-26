@@ -16,18 +16,18 @@ function ppi_get_registration() {
 }
 
 /**
- * Detect ProPhoto 6 sites that are not registered
+ * Detect ProPhoto 7 sites that are not registered
  *
  * @return boolean
  */
-function ppi_p6_not_registered() {
+function ppi_p7_not_registered() {
   try {
-      $p6 = ppi_get_p6_theme();
-      if (! $p6) {
+      $p7 = ppi_get_p7_theme();
+      if (! $p7) {
           return false;
       }
 
-      $templatePath = $p6->get_stylesheet_directory();
+      $templatePath = $p7->get_stylesheet_directory();
       $autoload = "{$templatePath}/vendor/autoload.php";
       if (! @file_exists($autoload)) {
           return false;
@@ -59,7 +59,7 @@ function ppi_deactivation() {
 }
 
 /**
- * Register P6 container bindings
+ * Register P7 container bindings
  *
  * @param \NetRivet\Container\Container $container
  * @return void
@@ -119,7 +119,7 @@ function ppi_set_working_design($designId, $userId, $settings) {
 }
 
 /**
- * Delete all user-meta designations of P6 "working" designs
+ * Delete all user-meta designations of P7 "working" designs
  *
  * @return void
  */

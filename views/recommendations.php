@@ -5,7 +5,7 @@
     <h2>Recommendations:</h2>
 
     <p>
-        Your site is capable of running ProPhoto 6, but we would recommend addressing
+        Your site is capable of running ProPhoto 7, but we would recommend addressing
         the below items for the best possible experience.<br /><i id="dismiss-recommendations">(You can also <a>click here</a> to dismiss these recommendations.)</i>
     </p>
 
@@ -18,7 +18,7 @@
                 <code><?php echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION; ?></code>,
                 is technically compatible, but is insecure and outdated. We recommend
                 that you call your webhost and ask them to upgrade your PHP to at
-                least <code>5.6</code>, or ideally <code>7.0</code> or <code>7.1</code>.
+                least <code>5.6</code>, or ideally <code>7.2</code>.
                 Version <code>7.0</code> and higher run <em>nearly twice as fast</em>
                 as older versions, and are more secure, so it's definitely worth a quick
                 call to get updated.
