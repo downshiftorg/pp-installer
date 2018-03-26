@@ -34,7 +34,7 @@ function ppi_p7_not_registered() {
       }
 
       require_once $autoload;
-      $container = include("{$templatePath}/services.php");
+      $container = include("{$templatePath}/src/php/services.php");
       if (! $container) {
           return false;
       }
