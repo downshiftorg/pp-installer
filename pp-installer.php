@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: ProPhoto 6 Installer
+Plugin Name: ProPhoto 7 Installer
 Plugin URI: https://github.com/downshiftorg/pp-installer
-Description: Theme installer plugin for ProPhoto version 6. Checks server compatibility, auto-registers, and allows test-driving P6 while safely keeping another theme active.
+Description: Theme installer plugin for ProPhoto version 7. Checks server compatibility, auto-registers, and allows test-driving P7 while safely keeping another theme active.
 Author: ProPhoto
-Version: 6.0.15
+Version: 7.0.0
 Author URI: https://pro.photo
 License: MIT
  */
@@ -17,7 +17,7 @@ foreach ((array) glob(PPI_DIR . '/lib/*.php') as $file) {
     require_once($file);
 }
 
-if (ppi_p6_is_active_theme()) {
+if (ppi_p7_is_active_theme()) {
     return;
 }
 
