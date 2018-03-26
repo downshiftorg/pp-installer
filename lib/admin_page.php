@@ -1,14 +1,16 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Init the installer plugin admin page
  *
  * @return void
  */
-function ppi_admin_page_init() {
+function admin_page_init() {
     wp_enqueue_style('ppi_css', PPI_URL . 'css/admin.css', array(), time());
     wp_enqueue_script('ppi_js', PPI_URL . 'js/admin.js', array(), time());
-    add_action('admin_head', 'ppi_bootstrap_js');
+    add_action('admin_head', 'ppi_7\bootstrap_js');
 }
 
 
@@ -17,13 +19,13 @@ function ppi_admin_page_init() {
  *
  * @return void
  */
-function ppi_add_menu_item() {
+function add_menu_item() {
     add_menu_page(
         'ProPhoto Installer',
-        ppi_p7_is_installed() ? 'P7 Test Drive' : 'P7 Installer',
+        p7_is_installed() ? 'P7 Test Drive' : 'P7 Installer',
         'edit_theme_options',
         'prophoto-installer',
-        'ppi_render_admin_page',
+        'ppi_7\render_admin_page',
         '',
         '50'
     );
@@ -34,13 +36,13 @@ function ppi_add_menu_item() {
  *
  * @return void
  */
-function ppi_render_admin_page() {
-    $phpIsCompatible = ppi_php_compatible();
-    $wpIsCompatible = ppi_wp_compatible();
-    $gdIsCompatible = ppi_gd_compatible();
-    $jsonIsComptible = ppi_json_compatible();
-    $mysqlCompatible = ppi_mysql_permission_compatible();
-    $hostingCompatible = ppi_hosting_compatible();
+function render_admin_page() {
+    $phpIsCompatible = php_compatible();
+    $wpIsCompatible = wp_compatible();
+    $gdIsCompatible = gd_compatible();
+    $jsonIsComptible = json_compatible();
+    $mysqlCompatible = mysql_permission_compatible();
+    $hostingCompatible = hosting_compatible();
 
     $isCompatible = $phpIsCompatible
         && $wpIsCompatible
@@ -49,17 +51,17 @@ function ppi_render_admin_page() {
         && $mysqlCompatible
         && $hostingCompatible;
 
-    if (! $isCompatible || ! ppi_p7_is_installed()) {
+    if (! $isCompatible || ! p7_is_installed()) {
         include(PPI_DIR . '/views/pre-install.php');
         return;
     }
 
-    if (ppi_test_driving()) {
-        ppi_render_test_driving_page();
+    if (test_driving()) {
+        render_test_driving_page();
         return;
     }
 
-    ppi_render_p7_installed_page();
+    render_p7_installed_page();
 
 }
 
@@ -68,10 +70,10 @@ function ppi_render_admin_page() {
  *
  * @return void
  */
-function ppi_render_test_driving_page() {
+function render_test_driving_page() {
     $disableTestDriveUrl = admin_url('?ppi_disable_test_drive=1');
     $goLiveUrl = admin_url('themes.php?activated=true&ppi_go_live=1');
-    $nonTestDriveTheme = ppi_get_non_test_drive_theme_name();
+    $nonTestDriveTheme = get_non_test_drive_theme_name();
     include(PPI_DIR . '/views/test-driving.php');
 }
 
@@ -80,9 +82,9 @@ function ppi_render_test_driving_page() {
  *
  * @return void
  */
-function ppi_render_p7_installed_page() {
+function render_p7_installed_page() {
     $testDriveUrl = admin_url('?ppi_enable_test_drive=1');
-    $activateUrl = ppi_activate_p7_link();
+    $activateUrl = activate_p7_link();
     include(PPI_DIR . '/views/installed.php');
 }
 
@@ -91,7 +93,7 @@ function ppi_render_p7_installed_page() {
  *
  * @return void
  */
-function ppi_render_recommendations() {
+function render_recommendations() {
     $phpOutdated = version_compare('7.2', PHP_VERSION) === 1;
     $memoryLimit = (int) ini_get('memory_limit');
     $memoryLimitLow = $memoryLimit < 256;
@@ -107,14 +109,15 @@ function ppi_render_recommendations() {
  *
  * @return void
  */
-function ppi_render_install_or_test_drive() {
-    if (ppi_p7_is_installed()) {
-        ppi_render_test_drive();
+function render_install_or_test_drive() {
+    if (p7_is_installed()) {
+        render_test_drive();
         return;
     }
 
-    if (ppi_get_registration()) {
-        ppi_render_install_from_registration();
+    render_install_from_registration();
+    if (get_registration()) {
+        render_install_from_registration();
         return;
     }
 }
@@ -124,7 +127,7 @@ function ppi_render_install_or_test_drive() {
  *
  * @return void
  */
-function ppi_render_install_from_registration() {
+function render_install_from_registration() {
     include(PPI_DIR . '/views/install-from-registration.php');
 }
 
@@ -133,8 +136,8 @@ function ppi_render_install_from_registration() {
  *
  * @return void
  */
-function ppi_bootstrap_js() {
-    list($lineItemId, $userToken) = ppi_get_registration();
+function bootstrap_js() {
+    list($lineItemId, $userToken) = get_registration();
     $ajaxUrl = admin_url('admin-ajax.php');
 
     include(PPI_DIR . '/views/bootstrap-js.php');
@@ -145,6 +148,6 @@ function ppi_bootstrap_js() {
  *
  * @return string
  */
-function ppi_get_admin_page_url() {
+function get_admin_page_url() {
     return admin_url('admin.php?page=prophoto-installer');
 }

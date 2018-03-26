@@ -1,5 +1,7 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Get the ProPhoto 7 Theme object
  *
@@ -8,7 +10,7 @@
  *
  * @return WP_Theme|null
  */
-function ppi_get_p7_theme() {
+function get_p7_theme() {
     static $p7 = false;
 
     if (false !== $p7) {
@@ -16,7 +18,7 @@ function ppi_get_p7_theme() {
     }
 
     foreach (wp_get_themes() as $theme) {
-        if ((string) $theme === 'ProPhoto 7') {
+        if ((string) $theme === 'ProPhot7') {
             $p7 = $theme;
             return $p7;
         }
@@ -32,8 +34,8 @@ function ppi_get_p7_theme() {
  *
  * @return boolean
  */
-function ppi_p7_is_active_theme() {
-    $p7 = ppi_get_p7_theme();
+function p7_is_active_theme() {
+    $p7 = get_p7_theme();
     if (! $p7) {
         return false;
     }
@@ -46,8 +48,8 @@ function ppi_p7_is_active_theme() {
  *
  * @return boolean
  */
-function ppi_p7_is_installed() {
-    return !!ppi_get_p7_theme();
+function p7_is_installed() {
+    return !!get_p7_theme();
 }
 
 /**
@@ -60,7 +62,7 @@ function ppi_p7_is_installed() {
  * @param string|null $template
  * @return string
  */
-function ppi_get_theme_name($template = null) {
+function get_theme_name($template = null) {
     $theme = wp_get_theme($template);
     if ((string) $theme === 'ProPhoto') {
         return 'ProPhoto ' . intval($theme->get('Version'));
@@ -74,8 +76,8 @@ function ppi_get_theme_name($template = null) {
  *
  * @return string
  */
-function ppi_get_non_test_drive_theme_name() {
-    return ppi_get_theme_name(get_option('template'));
+function get_non_test_drive_theme_name() {
+    return get_theme_name(get_option('template'));
 }
 
 /**
@@ -83,8 +85,8 @@ function ppi_get_non_test_drive_theme_name() {
  *
  * @return string
  */
-function ppi_activate_p7_link() {
-    $slug = ppi_get_p7_theme_slug();
+function activate_p7_link() {
+    $slug = get_p7_theme_slug();
     $url = 'themes.php?action=activate&amp;stylesheet=' . urlencode($slug);
     $activateLink = wp_nonce_url($url, 'switch-theme_' . $slug);
     return $activateLink;
@@ -95,8 +97,8 @@ function ppi_activate_p7_link() {
  *
  * @return string
  */
-function ppi_get_p7_theme_slug() {
-    $theme = ppi_get_p7_theme();
+function get_p7_theme_slug() {
+    $theme = get_p7_theme();
     if (! $theme) {
         return null;
     }

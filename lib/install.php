@@ -1,29 +1,31 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Attempt to install P7 from registration data
  *
  * @return array
  */
-function ppi_install_p7() {
-    ppi_prep_install_p7();
-    list($lineItemId, $userToken) = ppi_get_registration();
+function install_p7() {
+    prep_install_p7();
+    list($lineItemId, $userToken) = get_registration();
     $endpoint = PROPHOTO_API_URL . "/line-items/{$lineItemId}/download";
     $url = $endpoint .= "?user_token={$userToken}&installer=0";
     $file = download_url($url);
 
     if (is_wp_error($file)) {
-        return ppi_install_wp_error($file);
+        return install_wp_error($file);
     }
 
-    if (! ppi_is_zip($file)) {
-        return ppi_install_pp_error($file);
+    if (! is_zip($file)) {
+        return install_pp_error($file);
     }
 
     $result = unzip_file($file, get_theme_root() . '/');
 
     if (is_wp_error($result)) {
-        return ppi_install_wp_error($result);
+        return install_wp_error($result);
     }
 
     return array('success' => true);
@@ -36,7 +38,7 @@ function ppi_install_p7() {
  * @param  resource $handle
  * @return void
  */
-function ppi_set_ssl_version($handle) {
+function set_ssl_version($handle) {
     curl_setopt($handle, CURLOPT_SSLVERSION, 1);
 }
 
@@ -50,7 +52,7 @@ function ppi_set_ssl_version($handle) {
  * @param string $file
  * @return boolean
  */
-function ppi_is_zip($file) {
+function is_zip($file) {
     $handle = fopen($file, 'rb');
     $first = fread($handle, 2);
     fclose($handle);
@@ -69,7 +71,7 @@ function ppi_is_zip($file) {
  * @param WP_Error $error
  * @return array
  */
-function ppi_install_wp_error($error) {
+function install_wp_error($error) {
     return array(
         'success' => false,
         'message' => $error->get_error_message(),
@@ -82,7 +84,7 @@ function ppi_install_wp_error($error) {
  * @param string $file
  * @return array
  */
-function ppi_install_pp_error($file) {
+function install_pp_error($file) {
     $data = json_decode(@file_get_contents($file), true);
 
     if (is_array($data) && isset($data['message'])) {
@@ -102,7 +104,7 @@ function ppi_install_pp_error($file) {
  *
  * @return void
  */
-function ppi_prep_install_p7() {
+function prep_install_p7() {
     // ensure required file functions are loaded
     require_once ABSPATH . 'wp-admin/includes/file.php';
 
@@ -113,7 +115,7 @@ function ppi_prep_install_p7() {
     // initialize the $wp_filesystem global object
     WP_Filesystem();
 
-    add_action('http_api_curl', 'ppi_set_ssl_version');
+    add_action('http_api_curl', 'ppi_7\set_ssl_version');
 
     @ini_set('max_execution_time', 300);
 }

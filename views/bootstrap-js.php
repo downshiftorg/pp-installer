@@ -1,3 +1,4 @@
+<?php namespace ppi_7 ?>
 <script>
 window.ppi = {
   links: {

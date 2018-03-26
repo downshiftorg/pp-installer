@@ -1,3 +1,4 @@
+<?php namespace ppi_7 ?>
 <div class="wrap">
 <h1>Activate or Test-drive</h1>
 
@@ -24,7 +25,7 @@
 <p class="narrow">
     If you choose to test-drive ProPhoto 7, only logged-in admin users will have P7
     as their active theme.  All other users will see your active theme:
-    <b><?php echo ppi_get_non_test_drive_theme_name(); ?></b>. This allows you to work on your
+    <b><?php echo get_non_test_drive_theme_name(); ?></b>. This allows you to work on your
     conversion to P7 and your updated responsive design in privacy, until you're ready
     to go live.  In the meantime, all of your normal web visitors will see your
     existing design and functionality.

@@ -1,12 +1,14 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Render the test-driving admin notice
  *
  * @return void
  */
-function ppi_notice_test_driving() {
-    if (ppi_p7_not_registered()) {
+function notice_test_driving() {
+    if (p7_not_registered()) {
         $registerUrl = admin_url('themes.php?activated=true');
         include PPI_DIR . '/views/notice-test-driving-unregistered.php';
         return;
@@ -25,6 +27,6 @@ function ppi_notice_test_driving() {
  *
  * @return void
  */
-function ppi_notice_test_drive_disabled() {
+function notice_test_drive_disabled() {
     include PPI_DIR . '/views/notice-test-drive-disabled.php';
 }

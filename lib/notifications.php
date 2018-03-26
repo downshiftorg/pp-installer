@@ -1,12 +1,14 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Filter the ProPhoto bar notifications config array
  *
  * @param array $config
  * @return array
  */
-function ppi_notifications($config) {
+function notifications($config) {
     foreach ($config as $index => $notification) {
         if ($notification['id'] === 'previewing_non_live_design') {
             unset($config[$index]);
@@ -17,7 +19,7 @@ function ppi_notifications($config) {
         }
     }
 
-    $liveTheme = ppi_get_non_test_drive_theme_name();
+    $liveTheme = get_non_test_drive_theme_name();
 
     array_splice($config, 1, 0, array(
         array(
