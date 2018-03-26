@@ -6,7 +6,7 @@
  * @return boolean
  */
 function ppi_php_compatible() {
-    if (version_compare('5.3.6', PHP_VERSION) === 1) {
+    if (version_compare('5.4.0', PHP_VERSION) === 1) {
         return false;
     }
 
