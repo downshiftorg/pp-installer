@@ -59,7 +59,7 @@
     </li>
     <?php } ?>
 
-    <?php if ($jsonIsComptible) { ?>
+    <?php if ($jsonIsCompatible) { ?>
     <li class="good">
         Your server is compiled with the required <code>json</code> extension.
     </li>
@@ -73,7 +73,7 @@
     </li>
     <?php } ?>
 
-    <?php if ($domIsComptible) { ?>
+    <?php if ($domIsCompatible) { ?>
     <li class="good">
         Your server is compiled with the required <code>dom</code> extension.
     </li>

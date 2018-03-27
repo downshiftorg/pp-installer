@@ -40,16 +40,16 @@ function render_admin_page() {
     $phpIsCompatible = php_compatible();
     $wpIsCompatible = wp_compatible();
     $gdIsCompatible = gd_compatible();
-    $jsonIsComptible = json_compatible();
-    $domIsComptible = dom_compatible();
+    $jsonIsCompatible = json_compatible();
+    $domIsCompatible = dom_compatible();
     $mysqlCompatible = mysql_permission_compatible();
     $hostingCompatible = hosting_compatible();
 
     $isCompatible = $phpIsCompatible
         && $wpIsCompatible
         && $gdIsCompatible
-        && $jsonIsComptible
-        && $domIsComptible
+        && $jsonIsCompatible
+        && $domIsCompatible
         && $mysqlCompatible
         && $hostingCompatible;
 
