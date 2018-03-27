@@ -1,14 +1,16 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Restore frozen theme widgets to `sidebars_widgets` option
  *
  * @return void
  */
-function ppi_unfreeze_theme_widgets() {
-    $p6theme = ppi_get_p6_theme_slug();
+function unfreeze_theme_widgets() {
+    $prophotoTheme = get_theme_slug();
     $sidebarsWidgets = wp_get_sidebars_widgets();
-    update_option("ppi_theme_widgets_{$p6theme}", $sidebarsWidgets);
+    update_option("ppi_theme_widgets_{$prophotoTheme}", $sidebarsWidgets);
 
     $theme = get_option('template');
     $themeWidgets = get_option("ppi_theme_widgets_{$theme}", array());
@@ -20,14 +22,14 @@ function ppi_unfreeze_theme_widgets() {
  *
  * @return void
  */
-function ppi_freeze_theme_widgets() {
+function freeze_theme_widgets() {
     $theme = get_option('template');
     $sidebarsWidgets = wp_get_sidebars_widgets();
     update_option("ppi_theme_widgets_{$theme}", $sidebarsWidgets);
 
-    $p6theme = ppi_get_p6_theme_slug();
-    $p6Widgets = get_option("ppi_theme_widgets_{$p6theme}", array());
-    update_option('sidebars_widgets', $p6Widgets);
+    $prophotoTheme = get_theme_slug();
+    $prophotoWidgets = get_option("ppi_theme_widgets_{$prophotoTheme}", array());
+    update_option('sidebars_widgets', $prophotoWidgets);
 }
 
 /**
@@ -35,7 +37,7 @@ function ppi_freeze_theme_widgets() {
  *
  * @return array
  */
-function ppi_use_non_test_drive_widgets() {
+function use_non_test_drive_widgets() {
     $theme = get_option('template');
     return get_option("ppi_theme_widgets_{$theme}");
 }
@@ -45,7 +47,7 @@ function ppi_use_non_test_drive_widgets() {
  *
  * @return void
  */
-function ppi_move_theme_widgets_to_theme_mods() {
+function move_theme_widgets_to_theme_mods() {
     $theme = get_option('template');
     $themeWidgets = get_option("ppi_theme_widgets_{$theme}", array());
     $themeMods = get_option("theme_mods_{$theme}", array());
@@ -58,8 +60,8 @@ function ppi_move_theme_widgets_to_theme_mods() {
  *
  * @return void
  */
-function ppi_prevent_delete_inactive_widgets() {
-    $warning = 'Be careful deleting! These widgets may be used by ProPhoto 6.';
+function prevent_delete_inactive_widgets() {
+    $warning = 'Be careful deleting! These widgets may be used by ProPhoto 7.';
     $css  = "#widgets-left .sidebar-description p:after {content: ' $warning'}";
     $css .= '.inactive-sidebar > .description, .remove-inactive-widgets {display: none}';
     echo "<style>$css</style>";

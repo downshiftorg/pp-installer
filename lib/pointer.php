@@ -1,15 +1,17 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Initialize installer theme admin menu item pointer
  *
  * @return void
  */
-function ppi_pointer_init() {
+function pointer_init() {
    $userId = get_current_user_id();
    $dismissed = explode(',', (string) get_user_meta($userId, 'dismissed_wp_pointers', true));
 
-   if (in_array('ppi_pointer', $dismissed)) {
+   if (in_array('pointer', $dismissed)) {
       return;
    }
 
@@ -18,8 +20,8 @@ function ppi_pointer_init() {
    wp_enqueue_script('ppi_pointer', PPI_URL . 'js/pointer.js');
 
    wp_localize_script('ppi_pointer', 'ppi_pointer', array(
-      'content' => ppi_pointer_markup(),
-      'target' => '.toplevel_page_prophoto-installer a',
+      'content' => pointer_markup(),
+      'target' => '.toplevel_page_prophoto-installer > a',
       'position' => array(
          'edge' => 'left',
          'align' => 'middle',
@@ -32,8 +34,8 @@ function ppi_pointer_init() {
  *
  * @return string
  */
-function ppi_pointer_markup() {
+function pointer_markup() {
    $markup  = '<h3>ProPhoto Installer</h3>';
-   $markup .= '<p>Click here to download, test-drive, and activate ProPhoto 6!</p>';
+   $markup .= '<p>Click here to download, test-drive, and activate ProPhoto 7!</p>';
    return $markup;
 }

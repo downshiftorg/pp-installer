@@ -1,12 +1,14 @@
 <?php
 
+namespace ppi_7;
+
 /**
- * Is the current PHP version high enough to run P6?
+ * Is the current PHP version high enough to run prophoto?
  *
  * @return boolean
  */
-function ppi_php_compatible() {
-    if (version_compare('5.3.6', PHP_VERSION) === 1) {
+function php_compatible() {
+    if (version_compare('5.4.0', PHP_VERSION) === 1) {
         return false;
     }
 
@@ -18,7 +20,7 @@ function ppi_php_compatible() {
  *
  * @return boolean
  */
-function ppi_wp_compatible() {
+function wp_compatible() {
     return function_exists('rest_url');
 }
 
@@ -27,7 +29,7 @@ function ppi_wp_compatible() {
  *
  * @return boolean
  */
-function ppi_gd_compatible() {
+function gd_compatible() {
     return function_exists('imagecreatetruecolor');
 }
 
@@ -36,8 +38,17 @@ function ppi_gd_compatible() {
  *
  * @return boolean
  */
-function ppi_json_compatible() {
+function json_compatible() {
     return extension_loaded('json');
+}
+
+/**
+ * Does that server have the dom-extension loaded?
+ *
+ * @return boolean
+ */
+function dom_compatible() {
+    return extension_loaded('dom');
 }
 
 /**
@@ -47,7 +58,7 @@ function ppi_json_compatible() {
  * @param string $db
  * @return boolean
  */
-function ppi_mysql_grant_compatible($grant, $db) {
+function mysql_grant_compatible($grant, $db) {
     $escaped = str_replace('_', '\_', $db);
     $wildcard = preg_replace('/_([\w-]+)/', '__', $escaped);
 
@@ -75,19 +86,19 @@ function ppi_mysql_grant_compatible($grant, $db) {
  *
  * @return boolean
  */
-function ppi_mysql_permission_compatible() {
+function mysql_permission_compatible() {
     global $wpdb;
     $db = DB_NAME;
     $grants = $wpdb->get_results('SHOW GRANTS FOR CURRENT_USER', ARRAY_A);
 
     foreach ($grants as $row) {
         $grant = current($row);
-        if (ppi_mysql_grant_compatible($grant, $db)) {
+        if (mysql_grant_compatible($grant, $db)) {
             return true;
         }
     }
 
-    return ppi_can_create_alter_drop_table();
+    return can_create_alter_drop_table();
 }
 
 /**
@@ -95,7 +106,7 @@ function ppi_mysql_permission_compatible() {
  *
  * @return boolean
  */
-function ppi_can_create_alter_drop_table() {
+function can_create_alter_drop_table() {
     global $wpdb;
     $wpdb->suppress_errors();
     $testTable = "{$wpdb->prefix}ppi_priv_test";
@@ -129,8 +140,8 @@ function ppi_can_create_alter_drop_table() {
  *
  * @return boolean
  */
-function ppi_hosting_compatible() {
-    $domain = ppi_extract_domain(home_url());
+function hosting_compatible() {
+    $domain = extract_domain(home_url());
     if (! $domain) {
         return true;
     }

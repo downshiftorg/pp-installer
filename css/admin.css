@@ -28,7 +28,7 @@
 }
 
 #pp-compatibility li.good:before {
-    content: "√";
+    content: "✓";
     font-size: 14px;
     background: green;
     padding: 2px 9px 5px 7px;
@@ -81,14 +81,14 @@
 /* install from registration process */
 .installing-from-registration #install-from-registration-note,
 #too-many-attempts-error-notice,
-#download-p6-failure-notice,
+#download-prophoto-failure-notice,
 #get-registration-failure-notice,
 #save-registration-failure-notice,
 #install-from-registration-steps {
     display: none;
 }
 
-.download-p6-failure #download-p6-failure-notice {
+.download-prophoto-failure #download-prophoto-failure-notice {
     display: block;
 }
 
@@ -137,13 +137,13 @@
     content: "(failed)";
 }
 
-#p6-installed-successfully {
+#prophoto-installed-successfully {
     display: none;
     font-size: 1.4em;
 }
 
-#p6-installed-successfully:before {
-    content: "√";
+#prophoto-installed-successfully:before {
+    content: "✓";
     font-size: 16px;
     background: green;
     color: #fff;

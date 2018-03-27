@@ -1,11 +1,13 @@
 <?php
 
+namespace ppi_7;
+
 /**
  * Get the unique installer plugin registration data, if available
  *
  * @return string|null
  */
-function ppi_get_registration() {
+function get_registration() {
     $registrationPath = PPI_DIR . '/registration.php';
 
     if (! @file_exists($registrationPath)) {
@@ -16,25 +18,25 @@ function ppi_get_registration() {
 }
 
 /**
- * Detect ProPhoto 6 sites that are not registered
+ * Detect ProPhoto 7 sites that are not registered
  *
  * @return boolean
  */
-function ppi_p6_not_registered() {
+function not_registered() {
   try {
-      $p6 = ppi_get_p6_theme();
-      if (! $p6) {
+      $prophoto = get_theme();
+      if (! $prophoto) {
           return false;
       }
 
-      $templatePath = $p6->get_stylesheet_directory();
+      $templatePath = $prophoto->get_stylesheet_directory();
       $autoload = "{$templatePath}/vendor/autoload.php";
       if (! @file_exists($autoload)) {
           return false;
       }
 
       require_once $autoload;
-      $container = include("{$templatePath}/services.php");
+      $container = include("{$templatePath}/src/php/services.php");
       if (! $container) {
           return false;
       }
@@ -52,20 +54,20 @@ function ppi_p6_not_registered() {
  *
  * @return void
  */
-function ppi_deactivation() {
-  if (ppi_test_driving()) {
-    ppi_disable_test_drive();
+function deactivation() {
+  if (test_driving()) {
+    disable_test_drive();
   }
 }
 
 /**
- * Register P6 container bindings
+ * Register prophoto container bindings
  *
  * @param \NetRivet\Container\Container $container
  * @return void
  */
-function ppi_container_bindings($container) {
-  if (! ppi_test_driving()) {
+function container_bindings($container) {
+  if (! test_driving()) {
     return;
   }
 
@@ -82,7 +84,7 @@ function ppi_container_bindings($container) {
  *
  * @return void
  */
-function ppi_manage_designs_bootstrap() {
+function manage_designs_bootstrap() {
   if (! isset($_GET['page']) || $_GET['page'] !== 'pp-designs') {
       return;
   }
@@ -101,7 +103,7 @@ function ppi_manage_designs_bootstrap() {
  *
  * @return void
  */
-function ppi_testdriving_bootstrap() {
+function testdriving_bootstrap() {
   echo "<script>window.testDriving = true;</script>";
 }
 
@@ -113,17 +115,17 @@ function ppi_testdriving_bootstrap() {
  * @param \ProPhoto\Core\Model\Settings\SiteSettingsInterface $settings
  * @return void
  */
-function ppi_set_working_design($designId, $userId, $settings) {
-  ppi_delete_user_working_designs();
+function set_working_design($designId, $userId, $settings) {
+  delete_user_working_designs();
   $settings->set('live_design_id', $designId);
 }
 
 /**
- * Delete all user-meta designations of P6 "working" designs
+ * Delete all user-meta designations of prophoto "working" designs
  *
  * @return void
  */
-function ppi_delete_user_working_designs() {
+function delete_user_working_designs() {
   global $wpdb;
   $wpdb->delete($wpdb->usermeta, array('meta_key' => 'pp_working_design_id'));
 }
@@ -135,7 +137,7 @@ function ppi_delete_user_working_designs() {
  * @param string $url
  * @return string|false
  */
-function ppi_extract_domain($url) {
+function extract_domain($url) {
     if (! is_string($url)) {
         return false;
     }

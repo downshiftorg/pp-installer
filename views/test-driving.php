@@ -1,14 +1,16 @@
-<h1>Test-Driving ProPhoto 6</h1>
+<?php namespace ppi_7 ?>
+
+<h1>Test-Driving ProPhoto 7</h1>
 
 <p class="ppi-intro narrow">
-    You are currently test-driving ProPhoto 6.  That means that only users logged-in
+    You are currently test-driving ProPhoto 7.  That means that only users logged-in
     and cookied by their browser as admin users for this WordPress site have the
-    ProPhoto 6 theme as their active theme.  All of your normal site visitors are still
+    ProPhoto 7 theme as their active theme.  All of your normal site visitors are still
     seeing your active theme: <b><?php echo $nonTestDriveTheme; ?></b>.
 </p>
 
 <p>
-    You can disable test-drive mode <em>(switching back to <?php echo $nonTestDriveTheme; ?> for everyone)</em>, or fully go live for everyone with P6:
+    You can disable test-drive mode <em>(switching back to <?php echo $nonTestDriveTheme; ?> for everyone)</em>, or fully go live for everyone with P7:
 </p>
 
 <a href="<?php echo $disableTestDriveUrl; ?>" class="button button-secondary button-hero">
@@ -26,10 +28,10 @@
 <h2>About Test-Drive Mode:</h2>
 
 <p class="narrow">
-    When test-driving ProPhoto 6, only logged-in admin users will have P6
+    When test-driving ProPhoto 7, only logged-in admin users will have P7
     as their active theme.  All other users will see your active theme:
     <b><?php echo $nonTestDriveTheme; ?></b>. This allows you to work on your
-    conversion to P6 and your updated responsive design in privacy, until you're ready
+    conversion to P7 and your updated responsive design in privacy, until you're ready
     to go live.  In the meantime, all of your normal web visitors will see your
     existing design and functionality.
 </p>
@@ -43,7 +45,7 @@
 
 <p class="narrow">
     Most people don't log in to their WordPress sites with their phones, so they're not recognized
-    by your phone's browser as an admin user.  This means if you want to view your test-driven P6
+    by your phone's browser as an admin user.  This means if you want to view your test-driven P7
     site on your phone or other device, you'l need make sure you login to WordPress first.
 </p>
 

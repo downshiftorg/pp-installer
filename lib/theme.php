@@ -1,53 +1,55 @@
 <?php
 
+namespace ppi_7;
+
 /**
- * Get the ProPhoto 6 Theme object
+ * Get the ProPhoto 7 Theme object
  *
  * The documentation for wp_get_themes() says it is expensive, so
  * we cache the result with a local static variable for performance
  *
  * @return WP_Theme|null
  */
-function ppi_get_p6_theme() {
-    static $p6 = false;
+function get_theme() {
+    static $prophoto = false;
 
-    if (false !== $p6) {
-        return $p6;
+    if (false !== $prophoto) {
+        return $prophoto;
     }
 
     foreach (wp_get_themes() as $theme) {
-        if ((string) $theme === 'ProPhoto 6') {
-            $p6 = $theme;
-            return $p6;
+        if ((string) $theme === 'ProPhoto 7') {
+            $prophoto = $theme;
+            return $prophoto;
         }
     }
 
-    $p6 = null;
-    return $p6;
+    $prophoto = null;
+    return $prophoto;
 }
 
 
 /**
- * Is ProPhoto 6 the current active (not test-driven) theme?
+ * Is ProPhoto 7 the current active (not test-driven) theme?
  *
  * @return boolean
  */
-function ppi_p6_is_active_theme() {
-    $p6 = ppi_get_p6_theme();
-    if (! $p6) {
+function is_active_theme() {
+    $prophoto = get_theme();
+    if (! $prophoto) {
         return false;
     }
 
-    return get_option('template') === $p6->get_template();
+    return get_option('template') === $prophoto->get_template();
 }
 
 /**
- * Is ProPhoto 6 installed?
+ * Is ProPhoto 7 installed?
  *
  * @return boolean
  */
-function ppi_p6_is_installed() {
-    return !!ppi_get_p6_theme();
+function is_installed() {
+    return !!get_theme();
 }
 
 /**
@@ -60,7 +62,7 @@ function ppi_p6_is_installed() {
  * @param string|null $template
  * @return string
  */
-function ppi_get_theme_name($template = null) {
+function get_theme_name($template = null) {
     $theme = wp_get_theme($template);
     if ((string) $theme === 'ProPhoto') {
         return 'ProPhoto ' . intval($theme->get('Version'));
@@ -74,29 +76,29 @@ function ppi_get_theme_name($template = null) {
  *
  * @return string
  */
-function ppi_get_non_test_drive_theme_name() {
-    return ppi_get_theme_name(get_option('template'));
+function get_non_test_drive_theme_name() {
+    return get_theme_name(get_option('template'));
 }
 
 /**
- * Get a nonced link for activating P6
+ * Get a nonced link for activating prophoto
  *
  * @return string
  */
-function ppi_activate_p6_link() {
-    $slug = ppi_get_p6_theme_slug();
+function activate_link() {
+    $slug = get_theme_slug();
     $url = 'themes.php?action=activate&amp;stylesheet=' . urlencode($slug);
     $activateLink = wp_nonce_url($url, 'switch-theme_' . $slug);
     return $activateLink;
 }
 
 /**
- * Get the P6 theme slug (equivalent to dir name of theme)
+ * Get the prophoto theme slug (equivalent to dir name of theme)
  *
  * @return string
  */
-function ppi_get_p6_theme_slug() {
-    $theme = ppi_get_p6_theme();
+function get_theme_slug() {
+    $theme = get_theme();
     if (! $theme) {
         return null;
     }
