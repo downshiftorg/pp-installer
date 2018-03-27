@@ -73,6 +73,20 @@
     </li>
     <?php } ?>
 
+    <?php if ($domIsComptible) { ?>
+    <li class="good">
+        Your server is compiled with the required <code>dom</code> extension.
+    </li>
+    <?php } else { ?>
+    <li class="bad">
+        Your server is missing the required <code>dom</code> extension.
+        <span>
+            Please contact your webhost technical support and ask them to make sure
+            you are on a build of PHP containing the <code>dom</code> extension.
+        </span>
+    </li>
+    <?php } ?>
+
     <?php if ($mysqlCompatible) { ?>
     <li class="good">
         Your server has proper MySQL permissions.

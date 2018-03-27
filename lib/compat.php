@@ -43,6 +43,15 @@ function json_compatible() {
 }
 
 /**
+ * Does that server have the dom-extension loaded?
+ *
+ * @return boolean
+ */
+function dom_compatible() {
+    return extension_loaded('dom');
+}
+
+/**
  * Check if an individual grant string contains necessary permissions
  *
  * @param string $grant
