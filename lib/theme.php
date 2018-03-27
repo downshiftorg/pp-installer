@@ -18,7 +18,7 @@ function get_theme() {
     }
 
     foreach (wp_get_themes() as $theme) {
-        if ((string) $theme === 'ProPhoto 7') {
+        if ((string) $theme === 'ProPhoto7') {
             $prophoto = $theme;
             return $prophoto;
         }
