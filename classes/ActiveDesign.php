@@ -21,12 +21,4 @@ class ActiveDesign extends BaseActiveDesign
         }
         return $this->id;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isLiveDesign()
-    {
-        return false;
-    }
 }
