@@ -17,7 +17,9 @@ defined('PROPHOTO_API_URL') || define('PROPHOTO_API_URL', 'https://api.pro.photo
 foreach ((array) glob(PPI_DIR . '/lib/*.php') as $file) {
     require_once($file);
 }
+
 add_action('admin_head-widgets.php', 'ppi_7\prevent_delete_inactive_widgets');
+
 if (ppi_7\is_active_theme()) {
     return;
 }
