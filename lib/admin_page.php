@@ -10,7 +10,7 @@ namespace ppi_7;
 function admin_page_init() {
     wp_enqueue_style('ppi_css', PPI_URL . 'css/admin.css', array(), time());
     wp_enqueue_script('ppi_js', PPI_URL . 'js/admin.js', array(), time());
-    add_action('admin_head', 'ppi_7\bootstrap_js');
+    add_action('admin_head', '\ppi_7\bootstrap_js');
 }
 
 
@@ -25,7 +25,7 @@ function add_menu_item() {
         is_installed() ? 'P7 Test Drive' : 'P7 Installer',
         'edit_theme_options',
         'prophoto-installer',
-        'ppi_7\render_admin_page',
+        '\ppi_7\render_admin_page',
         '',
         '50'
     );

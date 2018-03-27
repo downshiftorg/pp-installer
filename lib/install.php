@@ -115,7 +115,7 @@ function prep_install() {
     // initialize the $wp_filesystem global object
     WP_Filesystem();
 
-    add_action('http_api_curl', 'ppi_7\set_ssl_version');
+    add_action('http_api_curl', '\ppi_7\set_ssl_version');
 
     @ini_set('max_execution_time', 300);
 }

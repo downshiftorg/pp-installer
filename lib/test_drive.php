@@ -8,7 +8,7 @@ namespace ppi_7;
  * @return boolean
  */
 function test_driving() {
-    return get_option('test_driving') === 'enabled';
+    return get_option('ppi_test_driving') === 'enabled';
 }
 
 /**
@@ -18,13 +18,13 @@ function test_driving() {
  */
 function test_drive_init() {
     if (test_driving() && user_can_see_test_drive()) {
-        add_filter('template', 'filter_theme');
-        add_filter('stylesheet', 'filter_theme');
+        add_filter('template', '\ppi_7\filter_theme');
+        add_filter('stylesheet', '\ppi_7\filter_theme');
     }
 
     $userIsAdmin = current_user_can('edit_theme_options');
     if (! $userIsAdmin && test_driving()) {
-        add_filter('sidebars_widgets', 'use_non_test_drive_widgets');
+        add_filter('sidebars_widgets', '\ppi_7\use_non_test_drive_widgets');
     }
 
     if (! $userIsAdmin) {
@@ -33,13 +33,13 @@ function test_drive_init() {
 
     // this needs to stay ABOVE handle_test_drive_changes()
     if (test_driving()) {
-        add_filter('all_admin_notices', 'ppi_7\notice_test_driving');
-        add_action('admin_head', 'ppi_7\manage_designs_bootstrap');
-        add_action('pp_customizer_head', 'ppi_7\testdriving_bootstrap');
-        add_action('pp_begin_body', 'ppi_7\testdriving_bootstrap');
-        add_action('admin_head', 'ppi_7\testdriving_bootstrap');
-        add_action('pp_working_design_id_set', 'ppi_7\set_working_design', 10, 3);
-        add_filter('pp_notifications_config', 'ppi_7\notifications');
+        add_filter('all_admin_notices', '\ppi_7\notice_test_driving');
+        add_action('admin_head', '\ppi_7\manage_designs_bootstrap');
+        add_action('pp_customizer_head', '\ppi_7\testdriving_bootstrap');
+        add_action('pp_begin_body', '\ppi_7\testdriving_bootstrap');
+        add_action('admin_head', '\ppi_7\testdriving_bootstrap');
+        add_action('pp_working_design_id_set', '\ppi_7\set_working_design', 10, 3);
+        add_filter('pp_notifications_config', '\ppi_7\notifications');
     }
 
     handle_test_drive_changes();
