@@ -8,7 +8,6 @@ Version: 7.0.0
 Author URI: https://pro.photo
 License: MIT
  */
-use ppi_7;
 
 define('PPI_DIR', dirname(__FILE__));
 define('PPI_URL', plugin_dir_url(__FILE__));
