@@ -28,9 +28,9 @@
    *
    * @return {void}
    */
-  function install_p7_done() {
-    $('#download-p7').removeClass('pending').addClass('success');
-    $('#p7-installed-successfully').show();
+  function install_done() {
+    $('#download-prophoto').removeClass('pending').addClass('success');
+    $('#prophoto-installed-successfully').show();
   }
 
   /**
@@ -38,9 +38,9 @@
    *
    * @return {void}
    */
-  function install_p7_fail() {
-    $('#download-p7').removeClass('pending').addClass('failure');
-    $body.addClass('download-p7-failure ppi-installing-error');
+  function install_fail() {
+    $('#download-prophoto').removeClass('pending').addClass('failure');
+    $body.addClass('download-prophoto-failure ppi-installing-error');
   }
 
   $(document).ready(function(){
@@ -51,9 +51,9 @@
       $(this).remove();
       $body.addClass('installing-from-registration');
 
-      $.get(window.ppi.links.install_p7)
-        .done(install_p7_done)
-        .fail(install_p7_fail);
+      $.get(window.ppi.links.install)
+        .done(install_done)
+        .fail(install_fail);
     });
 
     $('#dismiss-recommendations a').on('click', function() {

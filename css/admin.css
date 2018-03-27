@@ -81,14 +81,14 @@
 /* install from registration process */
 .installing-from-registration #install-from-registration-note,
 #too-many-attempts-error-notice,
-#download-p7-failure-notice,
+#download-prophoto-failure-notice,
 #get-registration-failure-notice,
 #save-registration-failure-notice,
 #install-from-registration-steps {
     display: none;
 }
 
-.download-p7-failure #download-p7-failure-notice {
+.download-prophoto-failure #download-prophoto-failure-notice {
     display: block;
 }
 
@@ -137,12 +137,12 @@
     content: "(failed)";
 }
 
-#p7-installed-successfully {
+#prophoto-installed-successfully {
     display: none;
     font-size: 1.4em;
 }
 
-#p7-installed-successfully:before {
+#prophoto-installed-successfully:before {
     content: "✓";
     font-size: 16px;
     background: green;

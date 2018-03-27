@@ -2,7 +2,7 @@
 /*
 Plugin Name: ProPhoto 7 Installer
 Plugin URI: https://github.com/downshiftorg/pp-installer
-Description: Theme installer plugin for ProPhoto version 7. Checks server compatibility, auto-registers, and allows test-driving P7 while safely keeping another theme active.
+Description: Theme installer plugin for ProPhoto version 7. Checks server compatibility, auto-registers, and allows test-driving Prophoto while safely keeping another theme active.
 Author: ProPhoto
 Version: 7.0.0
 Author URI: https://pro.photo
@@ -17,8 +17,8 @@ defined('PROPHOTO_API_URL') || define('PROPHOTO_API_URL', 'https://api.pro.photo
 foreach ((array) glob(PPI_DIR . '/lib/*.php') as $file) {
     require_once($file);
 }
-
-if (ppi_7\p7_is_active_theme()) {
+add_action('admin_head-widgets.php', 'ppi_7\prevent_delete_inactive_widgets');
+if (ppi_7\is_active_theme()) {
     return;
 }
 

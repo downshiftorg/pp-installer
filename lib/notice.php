@@ -8,7 +8,7 @@ namespace ppi_7;
  * @return void
  */
 function notice_test_driving() {
-    if (p7_not_registered()) {
+    if (not_registered()) {
         $registerUrl = admin_url('themes.php?activated=true');
         include PPI_DIR . '/views/notice-test-driving-unregistered.php';
         return;

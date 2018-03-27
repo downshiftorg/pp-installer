@@ -22,7 +22,7 @@ function admin_page_init() {
 function add_menu_item() {
     add_menu_page(
         'ProPhoto Installer',
-        p7_is_installed() ? 'P7 Test Drive' : 'P7 Installer',
+        is_installed() ? 'P7 Test Drive' : 'P7 Installer',
         'edit_theme_options',
         'prophoto-installer',
         'ppi_7\render_admin_page',
@@ -51,7 +51,7 @@ function render_admin_page() {
         && $mysqlCompatible
         && $hostingCompatible;
 
-    if (! $isCompatible || ! p7_is_installed()) {
+    if (! $isCompatible || ! is_installed()) {
         include(PPI_DIR . '/views/pre-install.php');
         return;
     }
@@ -61,12 +61,12 @@ function render_admin_page() {
         return;
     }
 
-    render_p7_installed_page();
+    render_installed_page();
 
 }
 
 /**
- * Render the admin page when the user is test-driving P7
+ * Render the admin page when the user is test-driving prophoto
  *
  * @return void
  */
@@ -78,18 +78,18 @@ function render_test_driving_page() {
 }
 
 /**
- * Render admin page when P7 is installed but not active or being test-driven
+ * Render admin page when prophoto is installed but not active or being test-driven
  *
  * @return void
  */
-function render_p7_installed_page() {
+function render_installed_page() {
     $testDriveUrl = admin_url('?ppi_enable_test_drive=1');
-    $activateUrl = activate_p7_link();
+    $activateUrl = activate_link();
     include(PPI_DIR . '/views/installed.php');
 }
 
 /**
- * Render recommendations for P7
+ * Render recommendations for prophoto
  *
  * @return void
  */
@@ -110,7 +110,7 @@ function render_recommendations() {
  * @return void
  */
 function render_install_or_test_drive() {
-    if (p7_is_installed()) {
+    if (is_installed()) {
         render_test_drive();
         return;
     }

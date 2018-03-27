@@ -22,14 +22,14 @@ function get_registration() {
  *
  * @return boolean
  */
-function p7_not_registered() {
+function not_registered() {
   try {
-      $p7 = get_p7_theme();
-      if (! $p7) {
+      $prophoto = get_theme();
+      if (! $prophoto) {
           return false;
       }
 
-      $templatePath = $p7->get_stylesheet_directory();
+      $templatePath = $prophoto->get_stylesheet_directory();
       $autoload = "{$templatePath}/vendor/autoload.php";
       if (! @file_exists($autoload)) {
           return false;
@@ -61,7 +61,7 @@ function deactivation() {
 }
 
 /**
- * Register P7 container bindings
+ * Register prophoto container bindings
  *
  * @param \NetRivet\Container\Container $container
  * @return void
@@ -121,7 +121,7 @@ function set_working_design($designId, $userId, $settings) {
 }
 
 /**
- * Delete all user-meta designations of P7 "working" designs
+ * Delete all user-meta designations of prophoto "working" designs
  *
  * @return void
  */

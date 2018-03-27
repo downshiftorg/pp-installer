@@ -3,12 +3,12 @@
 namespace ppi_7;
 
 /**
- * Attempt to install P7 from registration data
+ * Attempt to install prophoto from registration data
  *
  * @return array
  */
-function install_p7() {
-    prep_install_p7();
+function install() {
+    prep_install();
     list($lineItemId, $userToken) = get_registration();
     $endpoint = PROPHOTO_API_URL . "/line-items/{$lineItemId}/download";
     $url = $endpoint .= "?user_token={$userToken}&installer=0";
@@ -100,11 +100,11 @@ function install_pp_error($file) {
 }
 
 /**
- * Do some housekeeping before attempting to download P7 theme
+ * Do some housekeeping before attempting to download prophoto theme
  *
  * @return void
  */
-function prep_install_p7() {
+function prep_install() {
     // ensure required file functions are loaded
     require_once ABSPATH . 'wp-admin/includes/file.php';
 

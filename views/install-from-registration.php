@@ -11,12 +11,12 @@
 </a>
 
 <ul id="install-from-registration-steps">
-    <li id="download-p7" class="pending">
+    <li id="download-prophoto" class="pending">
         Download lastest version of ProPhoto 7
     </li>
 </ul>
 
-<p id="p7-installed-successfully">
+<p id="prophoto-installed-successfully">
     Success!  You're ready to test-drive or activate P7.
     <a href="">Click here to continue &raquo;</a>.
 </p>
@@ -25,7 +25,7 @@
 <!-- ERROR NOTICES -->
 
 
-<p class="ppi-error-notice" id="download-p7-failure-notice">
+<p class="ppi-error-notice" id="download-prophoto-failure-notice">
     Sorry, something went wrong downloading the latest version of P7.
     Please refresh this page and try again.  If the problem continues, please
     <a href="https://pro.photo/contact">contact us</a> for more help.

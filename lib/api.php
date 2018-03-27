@@ -24,12 +24,12 @@ function api_route_request() {
 }
 
 /**
- * Handle GET requests to install P7
+ * Handle GET requests to install prophoto
  *
  * @return void
  */
-function api_get_install_p7() {
-    $result = install_p7();
+function api_get_install() {
+    $result = install();
 
     if ($result['success'] === true) {
         status_header(204);

@@ -3,7 +3,7 @@
 namespace ppi_7;
 
 /**
- * Is the current PHP version high enough to run P7?
+ * Is the current PHP version high enough to run prophoto?
  *
  * @return boolean
  */

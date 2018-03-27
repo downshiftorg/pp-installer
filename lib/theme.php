@@ -10,22 +10,22 @@ namespace ppi_7;
  *
  * @return WP_Theme|null
  */
-function get_p7_theme() {
-    static $p7 = false;
+function get_theme() {
+    static $prophoto = false;
 
-    if (false !== $p7) {
-        return $p7;
+    if (false !== $prophoto) {
+        return $prophoto;
     }
 
     foreach (wp_get_themes() as $theme) {
-        if ((string) $theme === 'ProPhot7') {
-            $p7 = $theme;
-            return $p7;
+        if ((string) $theme === 'ProPhoto 7') {
+            $prophoto = $theme;
+            return $prophoto;
         }
     }
 
-    $p7 = null;
-    return $p7;
+    $prophoto = null;
+    return $prophoto;
 }
 
 
@@ -34,13 +34,13 @@ function get_p7_theme() {
  *
  * @return boolean
  */
-function p7_is_active_theme() {
-    $p7 = get_p7_theme();
-    if (! $p7) {
+function is_active_theme() {
+    $prophoto = get_theme();
+    if (! $prophoto) {
         return false;
     }
 
-    return get_option('template') === $p7->get_template();
+    return get_option('template') === $prophoto->get_template();
 }
 
 /**
@@ -48,8 +48,8 @@ function p7_is_active_theme() {
  *
  * @return boolean
  */
-function p7_is_installed() {
-    return !!get_p7_theme();
+function is_installed() {
+    return !!get_theme();
 }
 
 /**
@@ -81,24 +81,24 @@ function get_non_test_drive_theme_name() {
 }
 
 /**
- * Get a nonced link for activating P7
+ * Get a nonced link for activating prophoto
  *
  * @return string
  */
-function activate_p7_link() {
-    $slug = get_p7_theme_slug();
+function activate_link() {
+    $slug = get_theme_slug();
     $url = 'themes.php?action=activate&amp;stylesheet=' . urlencode($slug);
     $activateLink = wp_nonce_url($url, 'switch-theme_' . $slug);
     return $activateLink;
 }
 
 /**
- * Get the P7 theme slug (equivalent to dir name of theme)
+ * Get the prophoto theme slug (equivalent to dir name of theme)
  *
  * @return string
  */
-function get_p7_theme_slug() {
-    $theme = get_p7_theme();
+function get_theme_slug() {
+    $theme = get_theme();
     if (! $theme) {
         return null;
     }

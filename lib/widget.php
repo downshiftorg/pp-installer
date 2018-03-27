@@ -8,9 +8,9 @@ namespace ppi_7;
  * @return void
  */
 function unfreeze_theme_widgets() {
-    $p7theme = get_p7_theme_slug();
+    $prophotoTheme = get_theme_slug();
     $sidebarsWidgets = wp_get_sidebars_widgets();
-    update_option("ppi_theme_widgets_{$p7theme}", $sidebarsWidgets);
+    update_option("ppi_theme_widgets_{$prophotoTheme}", $sidebarsWidgets);
 
     $theme = get_option('template');
     $themeWidgets = get_option("ppi_theme_widgets_{$theme}", array());
@@ -27,9 +27,9 @@ function freeze_theme_widgets() {
     $sidebarsWidgets = wp_get_sidebars_widgets();
     update_option("ppi_theme_widgets_{$theme}", $sidebarsWidgets);
 
-    $p7theme = get_p7_theme_slug();
-    $p7Widgets = get_option("ppi_theme_widgets_{$p7theme}", array());
-    update_option('sidebars_widgets', $p7Widgets);
+    $prophotoTheme = get_theme_slug();
+    $prophotoWidgets = get_option("ppi_theme_widgets_{$prophotoTheme}", array());
+    update_option('sidebars_widgets', $prophotoWidgets);
 }
 
 /**

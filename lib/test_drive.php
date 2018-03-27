@@ -3,7 +3,7 @@
 namespace ppi_7;
 
 /**
- * Is the user currently test driving P7?
+ * Is the user currently test driving prophoto?
  *
  * @return boolean
  */
@@ -44,7 +44,7 @@ function test_drive_init() {
 
     handle_test_drive_changes();
 
-    if (p7_is_active_theme()) {
+    if (is_active_theme()) {
         disable_test_drive();
     }
 }
@@ -107,21 +107,21 @@ function handle_test_drive_changes() {
         notice_test_drive_disabled();
     }
 
-    if (isset($_GET['ppi_go_live']) && get_p7_theme_slug()) {
+    if (isset($_GET['ppi_go_live']) && get_theme_slug()) {
         go_live();
     }
 }
 
 /**
- * Switch out of test-drive mode by making P7 active
+ * Switch out of test-drive mode by making prophoto active
  *
  * @return void
  */
 function go_live() {
     move_theme_widgets_to_theme_mods();
     delete_option('ppi_test_driving');
-    update_option('template', get_p7_theme_slug());
-    update_option('stylesheet', get_p7_theme_slug());
+    update_option('template', get_theme_slug());
+    update_option('stylesheet', get_theme_slug());
 }
 
 /**
@@ -131,13 +131,13 @@ function go_live() {
  * @return string
  */
 function filter_theme($activeTheme) {
-    $p7 = get_p7_theme_slug();
+    $prophoto = get_theme_slug();
 
-    if (! $p7) {
+    if (! $prophoto) {
         return $activeTheme;
     }
 
-    return $p7;
+    return $prophoto;
 }
 
 /**
@@ -156,7 +156,7 @@ function disable_test_drive() {
  * @return void
  */
 function enable_test_drive() {
-    if (get_option('ppi_test_driving') === 'enabled' || get_p7_theme_slug() === get_option('template')) {
+    if (get_option('ppi_test_driving') === 'enabled' || get_theme_slug() === get_option('template')) {
         return;
     }
 
