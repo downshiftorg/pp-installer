@@ -117,7 +117,6 @@ function render_install_or_test_drive() {
         return;
     }
 
-    render_install_from_registration();
     if (get_registration()) {
         render_install_from_registration();
         return;

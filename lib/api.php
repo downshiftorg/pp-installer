@@ -13,13 +13,13 @@ function api_route_request() {
     $method = strtolower($_SERVER['REQUEST_METHOD']);
     $handler = "api_{$method}_{$affordance}";
 
-    if (! function_exists($handler)) {
+    if (! function_exists('\ppi_7\\' . $handler)) {
         status_header(404);
         api_send_error("unknown affordance $affordance");
         exit;
     }
 
-    call_user_func($handler);
+    call_user_func('\ppi_7\\' . $handler);
     exit;
 }
 
