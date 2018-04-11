@@ -11,7 +11,7 @@ function pointer_init() {
    $userId = get_current_user_id();
    $dismissed = explode(',', (string) get_user_meta($userId, 'dismissed_wp_pointers', true));
 
-   if (in_array('pointer', $dismissed)) {
+   if (in_array('ppi_pointer', $dismissed)) {
       return;
    }
 
