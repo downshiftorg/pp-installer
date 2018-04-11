@@ -53,6 +53,8 @@ function render_admin_page() {
         && $mysqlCompatible
         && $hostingCompatible;
 
+    include(PPI_DIR . '/views/google-tag-manager.php');
+
     if (! $isCompatible || ! is_installed()) {
         include(PPI_DIR . '/views/pre-install.php');
         return;
