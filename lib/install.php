@@ -110,7 +110,9 @@ function prep_install() {
 
     // try to bump memory limit for download/unzip to 512M if possible
     @ini_set('memory_limit', WP_MAX_MEMORY_LIMIT);
-    add_filter('admin_memory_limit', create_function('', 'return "512M";'));
+    add_filter('admin_memory_limit', function () {
+        return "512M";
+    });
 
     // initialize the $wp_filesystem global object
     WP_Filesystem();
