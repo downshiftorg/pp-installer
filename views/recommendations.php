@@ -20,7 +20,7 @@
                 <code><?php echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION; ?></code>,
                 is technically compatible, but is insecure and outdated. We recommend
                 that you call your webhost and ask them to upgrade your PHP to at
-                least <code>7.2</code>.
+                least <code>7.0</code>.
                 Version <code>7.0</code> and higher run <em>nearly twice as fast</em>
                 as older versions, and are more secure, so it's definitely worth a quick
                 call to get updated.
