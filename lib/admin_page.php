@@ -98,7 +98,7 @@ function render_installed_page() {
  * @return void
  */
 function render_recommendations() {
-    $phpOutdated = version_compare('7.2', PHP_VERSION) === 1;
+    $phpOutdated = version_compare('7.0', PHP_VERSION) === 1;
     $memoryLimit = (int) ini_get('memory_limit');
     $memoryLimitLow = $memoryLimit < 256;
     $missingImagick = !class_exists('Imagick');
