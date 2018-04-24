@@ -1,7 +1,5 @@
 <?php
 
-namespace ppi_7;
-
 /**
  * Get the ProPhoto 7 Theme object
  *
@@ -10,7 +8,7 @@ namespace ppi_7;
  *
  * @return WP_Theme|null
  */
-function get_theme() {
+function p7i_get_theme() {
     static $prophoto = false;
 
     if (false !== $prophoto) {
@@ -34,8 +32,8 @@ function get_theme() {
  *
  * @return boolean
  */
-function is_active_theme() {
-    $prophoto = get_theme();
+function p7i_is_active_theme() {
+    $prophoto = p7i_get_theme();
     if (! $prophoto) {
         return false;
     }
@@ -48,8 +46,8 @@ function is_active_theme() {
  *
  * @return boolean
  */
-function is_installed() {
-    return !!get_theme();
+function p7i_is_installed() {
+    return !!p7i_get_theme();
 }
 
 /**
@@ -62,7 +60,7 @@ function is_installed() {
  * @param string|null $template
  * @return string
  */
-function get_theme_name($template = null) {
+function p7i_get_theme_name($template = null) {
     $theme = wp_get_theme($template);
     if ((string) $theme === 'ProPhoto') {
         return 'ProPhoto ' . intval($theme->get('Version'));
@@ -76,8 +74,8 @@ function get_theme_name($template = null) {
  *
  * @return string
  */
-function get_non_test_drive_theme_name() {
-    return get_theme_name(get_option('template'));
+function p7i_get_non_test_drive_theme_name() {
+    return p7i_get_theme_name(get_option('template'));
 }
 
 /**
@@ -85,8 +83,8 @@ function get_non_test_drive_theme_name() {
  *
  * @return string
  */
-function activate_link() {
-    $slug = get_theme_slug();
+function p7i_activate_link() {
+    $slug = p7i_get_theme_slug();
     $url = 'themes.php?action=activate&amp;stylesheet=' . urlencode($slug);
     $activateLink = wp_nonce_url($url, 'switch-theme_' . $slug);
     return $activateLink;
@@ -97,8 +95,8 @@ function activate_link() {
  *
  * @return string
  */
-function get_theme_slug() {
-    $theme = get_theme();
+function p7i_get_theme_slug() {
+    $theme = p7i_get_theme();
     if (! $theme) {
         return null;
     }

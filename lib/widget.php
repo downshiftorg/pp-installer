@@ -1,14 +1,12 @@
 <?php
 
-namespace ppi_7;
-
 /**
  * Restore frozen theme widgets to `sidebars_widgets` option
  *
  * @return void
  */
-function unfreeze_theme_widgets() {
-    $prophotoTheme = get_theme_slug();
+function p7i_unfreeze_theme_widgets() {
+    $prophotoTheme = p7i_get_theme_slug();
     $sidebarsWidgets = wp_get_sidebars_widgets();
     update_option("ppi_theme_widgets_{$prophotoTheme}", $sidebarsWidgets);
 
@@ -22,12 +20,12 @@ function unfreeze_theme_widgets() {
  *
  * @return void
  */
-function freeze_theme_widgets() {
+function p7i_freeze_theme_widgets() {
     $theme = get_option('template');
     $sidebarsWidgets = wp_get_sidebars_widgets();
     update_option("ppi_theme_widgets_{$theme}", $sidebarsWidgets);
 
-    $prophotoTheme = get_theme_slug();
+    $prophotoTheme = p7i_get_theme_slug();
     $prophotoWidgets = get_option("ppi_theme_widgets_{$prophotoTheme}", array());
     update_option('sidebars_widgets', $prophotoWidgets);
 }
@@ -37,7 +35,7 @@ function freeze_theme_widgets() {
  *
  * @return array
  */
-function use_non_test_drive_widgets() {
+function p7i_use_non_test_drive_widgets() {
     $theme = get_option('template');
     return get_option("ppi_theme_widgets_{$theme}");
 }
@@ -47,7 +45,7 @@ function use_non_test_drive_widgets() {
  *
  * @return void
  */
-function move_theme_widgets_to_theme_mods() {
+function p7i_move_theme_widgets_to_theme_mods() {
     $theme = get_option('template');
     $themeWidgets = get_option("ppi_theme_widgets_{$theme}", array());
     $themeMods = get_option("theme_mods_{$theme}", array());
@@ -60,7 +58,7 @@ function move_theme_widgets_to_theme_mods() {
  *
  * @return void
  */
-function prevent_delete_inactive_widgets() {
+function p7i_prevent_delete_inactive_widgets() {
     $warning = 'Be careful deleting! These widgets may be used by ProPhoto 7.';
     $css  = "#widgets-left .sidebar-description p:after {content: ' $warning'}";
     $css .= '.inactive-sidebar > .description, .remove-inactive-widgets {display: none}';

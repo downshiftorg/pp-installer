@@ -1,5 +1,3 @@
-<?php namespace ppi_7 ?>
-
 <h1>Test-Driving ProPhoto 7</h1>
 
 <p class="ppi-intro narrow">

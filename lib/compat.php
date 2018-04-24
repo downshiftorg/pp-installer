@@ -1,13 +1,11 @@
 <?php
 
-namespace ppi_7;
-
 /**
  * Is the current PHP version high enough to run prophoto?
  *
  * @return boolean
  */
-function php_compatible() {
+function p7i_php_compatible() {
     if (version_compare('5.4.0', PHP_VERSION) === 1) {
         return false;
     }
@@ -20,7 +18,7 @@ function php_compatible() {
  *
  * @return boolean
  */
-function wp_compatible() {
+function p7i_wp_compatible() {
     return function_exists('rest_url');
 }
 
@@ -29,7 +27,7 @@ function wp_compatible() {
  *
  * @return boolean
  */
-function gd_compatible() {
+function p7i_gd_compatible() {
     return function_exists('imagecreatetruecolor');
 }
 
@@ -38,7 +36,7 @@ function gd_compatible() {
  *
  * @return boolean
  */
-function json_compatible() {
+function p7i_json_compatible() {
     return extension_loaded('json');
 }
 
@@ -47,7 +45,7 @@ function json_compatible() {
  *
  * @return boolean
  */
-function dom_compatible() {
+function p7i_dom_compatible() {
     return extension_loaded('dom');
 }
 
@@ -58,7 +56,7 @@ function dom_compatible() {
  * @param string $db
  * @return boolean
  */
-function mysql_grant_compatible($grant, $db) {
+function p7i_mysql_grant_compatible($grant, $db) {
     $escaped = str_replace('_', '\_', $db);
     $wildcard = preg_replace('/_([\w-]+)/', '__', $escaped);
 
@@ -86,19 +84,19 @@ function mysql_grant_compatible($grant, $db) {
  *
  * @return boolean
  */
-function mysql_permission_compatible() {
+function p7i_mysql_permission_compatible() {
     global $wpdb;
     $db = DB_NAME;
     $grants = $wpdb->get_results('SHOW GRANTS FOR CURRENT_USER', ARRAY_A);
 
     foreach ($grants as $row) {
         $grant = current($row);
-        if (mysql_grant_compatible($grant, $db)) {
+        if (p7i_mysql_grant_compatible($grant, $db)) {
             return true;
         }
     }
 
-    return can_create_alter_drop_table();
+    return p7i_can_create_alter_drop_table();
 }
 
 /**
@@ -106,7 +104,7 @@ function mysql_permission_compatible() {
  *
  * @return boolean
  */
-function can_create_alter_drop_table() {
+function p7i_can_create_alter_drop_table() {
     global $wpdb;
     $wpdb->suppress_errors();
     $testTable = "{$wpdb->prefix}ppi_priv_test";
@@ -140,8 +138,8 @@ function can_create_alter_drop_table() {
  *
  * @return boolean
  */
-function hosting_compatible() {
-    $domain = extract_domain(home_url());
+function p7i_hosting_compatible() {
+    $domain = p7i_extract_domain(home_url());
     if (! $domain) {
         return true;
     }
