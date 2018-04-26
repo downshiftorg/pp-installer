@@ -1,14 +1,12 @@
 <?php
 
-namespace ppi_7;
-
 /**
  * Is the user currently test driving prophoto?
  *
  * @return boolean
  */
-function test_driving() {
-    return get_option('ppi_test_driving') === 'enabled';
+function p7i_test_driving() {
+    return get_option('p7i_test_driving') === 'enabled';
 }
 
 /**
@@ -16,15 +14,15 @@ function test_driving() {
  *
  * @return void
  */
-function test_drive_init() {
-    if (test_driving() && user_can_see_test_drive()) {
-        add_filter('template', '\ppi_7\filter_theme');
-        add_filter('stylesheet', '\ppi_7\filter_theme');
+function p7i_test_drive_init() {
+    if (p7i_test_driving() && p7i_user_can_see_test_drive()) {
+        add_filter('template', 'p7i_filter_theme');
+        add_filter('stylesheet', 'p7i_filter_theme');
     }
 
     $userIsAdmin = current_user_can('edit_theme_options');
-    if (! $userIsAdmin && test_driving()) {
-        add_filter('sidebars_widgets', '\ppi_7\use_non_test_drive_widgets');
+    if (! $userIsAdmin && p7i_test_driving()) {
+        add_filter('sidebars_widgets', 'p7i_use_non_test_drive_widgets');
     }
 
     if (! $userIsAdmin) {
@@ -32,20 +30,20 @@ function test_drive_init() {
     }
 
     // this needs to stay ABOVE handle_test_drive_changes()
-    if (test_driving()) {
-        add_filter('all_admin_notices', '\ppi_7\notice_test_driving');
-        add_action('admin_head', '\ppi_7\manage_designs_bootstrap');
-        add_action('pp_customizer_head', '\ppi_7\testdriving_bootstrap');
-        add_action('pp_begin_body', '\ppi_7\testdriving_bootstrap');
-        add_action('admin_head', '\ppi_7\testdriving_bootstrap');
-        add_action('pp_working_design_id_set', '\ppi_7\set_working_design', 10, 3);
-        add_filter('pp_notifications_config', '\ppi_7\notifications');
+    if (p7i_test_driving()) {
+        add_filter('all_admin_notices', 'p7i_notice_test_driving');
+        add_action('admin_head', 'p7i_manage_designs_bootstrap');
+        add_action('pp_customizer_head', 'p7i_testdriving_bootstrap');
+        add_action('pp_begin_body', 'p7i_testdriving_bootstrap');
+        add_action('admin_head', 'p7i_testdriving_bootstrap');
+        add_action('pp_working_design_id_set', 'p7i_set_working_design', 10, 3);
+        add_filter('pp_notifications_config', 'p7i_notifications');
     }
 
-    handle_test_drive_changes();
+    p7i_handle_test_drive_changes();
 
-    if (is_active_theme()) {
-        disable_test_drive();
+    if (p7i_is_active_theme()) {
+        p7i_disable_test_drive();
     }
 }
 
@@ -54,12 +52,12 @@ function test_drive_init() {
  *
  * @return boolean
  */
-function user_can_see_test_drive() {
+function p7i_user_can_see_test_drive() {
     if (current_user_can('edit_theme_options')) {
         return true;
     }
 
-    if (is_tech_front_view()) {
+    if (p7i_is_tech_front_view()) {
         return true;
     }
 
@@ -71,7 +69,7 @@ function user_can_see_test_drive() {
  *
  * @return boolean
  */
-function is_tech_front_view() {
+function p7i_is_tech_front_view() {
     $hash = 'dbd1a12e723ea95c39035e87045ab1be';
 
     if (isset($_GET['test_drive_auth']) && md5($_GET['test_drive_auth']) === $hash) {
@@ -91,24 +89,24 @@ function is_tech_front_view() {
  *
  * @return void
  */
-function handle_test_drive_changes() {
+function p7i_handle_test_drive_changes() {
     if (isset($_GET['ppi_enable_test_drive'])) {
-        enable_test_drive();
+        p7i_enable_test_drive();
     }
 
     if (isset($_GET['ppi_disable_test_drive'])) {
-        disable_test_drive();
-        $url = get_admin_page_url() . '&ppi_test_drive_disabled=1';
+        p7i_disable_test_drive();
+        $url = p7i_get_admin_page_url() . '&ppi_test_drive_disabled=1';
         header("Location: $url");
         exit;
     }
 
     if (isset($_GET['ppi_test_drive_disabled'])) {
-        notice_test_drive_disabled();
+        p7i_notice_test_drive_disabled();
     }
 
-    if (isset($_GET['ppi_go_live']) && get_theme_slug()) {
-        go_live();
+    if (isset($_GET['ppi_go_live']) && p7i_get_theme_slug()) {
+        p7i_go_live();
     }
 }
 
@@ -117,11 +115,11 @@ function handle_test_drive_changes() {
  *
  * @return void
  */
-function go_live() {
-    move_theme_widgets_to_theme_mods();
-    delete_option('ppi_test_driving');
-    update_option('template', get_theme_slug());
-    update_option('stylesheet', get_theme_slug());
+function p7i_go_live() {
+    p7i_move_theme_widgets_to_theme_mods();
+    delete_option('p7i_test_driving');
+    update_option('template', p7i_get_theme_slug());
+    update_option('stylesheet', p7i_get_theme_slug());
 }
 
 /**
@@ -130,8 +128,8 @@ function go_live() {
  * @param string $activeTheme
  * @return string
  */
-function filter_theme($activeTheme) {
-    $prophoto = get_theme_slug();
+function p7i_filter_theme($activeTheme) {
+    $prophoto = p7i_get_theme_slug();
 
     if (! $prophoto) {
         return $activeTheme;
@@ -145,9 +143,9 @@ function filter_theme($activeTheme) {
  *
  * @return void
  */
-function disable_test_drive() {
-    unfreeze_theme_widgets();
-    delete_option('ppi_test_driving');
+function p7i_disable_test_drive() {
+    p7i_unfreeze_theme_widgets();
+    delete_option('p7i_test_driving');
 }
 
 /**
@@ -155,14 +153,14 @@ function disable_test_drive() {
  *
  * @return void
  */
-function enable_test_drive() {
-    if (get_option('ppi_test_driving') === 'enabled' || get_theme_slug() === get_option('template')) {
+function p7i_enable_test_drive() {
+    if (get_option('p7i_test_driving') === 'enabled' || p7i_get_theme_slug() === get_option('template')) {
         return;
     }
 
-    delete_user_working_designs();
-    freeze_theme_widgets();
-    update_option('ppi_test_driving', 'enabled');
+    p7i_delete_user_working_designs();
+    p7i_freeze_theme_widgets();
+    update_option('p7i_test_driving', 'enabled');
     header('Location: ' . admin_url('themes.php?activated=true'));
     exit;
 }

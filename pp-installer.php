@@ -10,24 +10,24 @@ License: MIT
  */
 @ini_set('display_errors', 1);
 error_reporting(E_ALL);
-define('PPI_DIR', dirname(__FILE__));
-define('PPI_URL', plugin_dir_url(__FILE__));
+define('P7I_DIR', dirname(__FILE__));
+define('P7I_URL', plugin_dir_url(__FILE__));
 defined('PROPHOTO_API_URL') || define('PROPHOTO_API_URL', 'https://api.pro.photo');
 
-foreach ((array) glob(PPI_DIR . '/lib/*.php') as $file) {
+foreach ((array) glob(P7I_DIR . '/lib/*.php') as $file) {
     require_once($file);
 }
 
-add_action('admin_head-widgets.php', '\ppi_7\prevent_delete_inactive_widgets');
+add_action('admin_head-widgets.php', 'p7i_prevent_delete_inactive_widgets');
 
-if (\ppi_7\is_active_theme()) {
+if (p7i_is_active_theme()) {
     return;
 }
 
-add_action('plugins_loaded', '\ppi_7\test_drive_init');
-add_action('wp_ajax_ppi_api', '\ppi_7\api_route_request');
-add_action('admin_menu', '\ppi_7\add_menu_item');
-add_action('load-toplevel_page_prophoto-installer', '\ppi_7\admin_page_init');
-add_action('admin_enqueue_scripts', '\ppi_7\pointer_init');
-add_action('pp_container_binding', '\ppi_7\container_bindings');
-register_deactivation_hook(__FILE__, '\ppi_7\deactivation');
+add_action('plugins_loaded', 'p7i_test_drive_init');
+add_action('wp_ajax_ppi_api', 'p7i_api_route_request');
+add_action('admin_menu', 'p7i_add_menu_item');
+add_action('load-toplevel_page_p7-installer', 'p7i_admin_page_init');
+add_action('admin_enqueue_scripts', 'p7i_pointer_init');
+add_action('pp_container_binding', 'p7i_container_bindings');
+register_deactivation_hook(__FILE__, 'p7i_deactivation');

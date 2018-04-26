@@ -1,5 +1,3 @@
-<?php namespace ppi_7 ?>
-
 <div id="recommendations-wrap">
 
     <hr />

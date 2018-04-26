@@ -1,5 +1,3 @@
-<?php namespace ppi_7 ?>
-
 <h1>ProPhoto 7 Installer</h1>
 
 <hr />
@@ -136,6 +134,6 @@
     Huzzah! Your site is totally compatible with ProPhoto 7.
 </p>
 
-<?php if (! get_option('ppi_hide_recommendations') ) render_recommendations(); ?>
+<?php if (! get_option('ppi_hide_recommendations') ) p7i_render_recommendations(); ?>
 
-<?php render_install_or_test_drive(); ?>
+<?php p7i_render_install_or_test_drive(); ?>

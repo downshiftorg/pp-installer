@@ -1,25 +1,23 @@
 <?php
 
-namespace ppi_7;
-
 /**
  * Route an internal API request
  *
  * @return void
  */
-function api_route_request() {
+function p7i_api_route_request() {
     status_header(500);
     $affordance = $_GET['affordance'];
     $method = strtolower($_SERVER['REQUEST_METHOD']);
-    $handler = "api_{$method}_{$affordance}";
+    $handler = "p7i_api_{$method}_{$affordance}";
 
-    if (! function_exists('\ppi_7\\' . $handler)) {
+    if (! function_exists($handler)) {
         status_header(404);
-        api_send_error("unknown affordance $affordance");
+        p7i_api_send_error("unknown affordance $affordance");
         exit;
     }
 
-    call_user_func('\ppi_7\\' . $handler);
+    call_user_func($handler);
     exit;
 }
 
@@ -28,8 +26,8 @@ function api_route_request() {
  *
  * @return void
  */
-function api_get_install() {
-    $result = install();
+function p7i_api_get_install() {
+    $result = p7i_install();
 
     if ($result['success'] === true) {
         status_header(204);
@@ -37,7 +35,7 @@ function api_get_install() {
     }
 
     status_header(500);
-    api_send_error($result['message']);
+    p7i_api_send_error($result['message']);
 }
 
 /**
@@ -45,12 +43,12 @@ function api_get_install() {
  *
  * @return void
  */
-function api_post_save_option() {
-    $payload = api_get_json_body();
+function p7i_api_post_save_option() {
+    $payload = p7i_api_get_json_body();
 
     if (! isset($payload['key']) || ! isset($payload['value'])) {
         status_header(400);
-        api_send_error('missing required data');
+        p7i_api_send_error('missing required data');
         return;
     }
 
@@ -61,7 +59,7 @@ function api_post_save_option() {
 
     if (! update_option($payload['key'], $payload['value'], false)) {
         status_header(500);
-        api_send_error('error saving option');
+        p7i_api_send_error('error saving option');
         return;
     }
 
@@ -73,7 +71,7 @@ function api_post_save_option() {
  *
  * @return array
  */
-function api_get_json_body() {
+function p7i_api_get_json_body() {
     return json_decode(file_get_contents('php://input'), true);
 }
 
@@ -85,7 +83,7 @@ function api_get_json_body() {
  * @param array $response
  * @return void
  */
-function api_send_json($response) {
+function p7i_api_send_json($response) {
     @header('Content-Type: application/json; charset=' . get_option('blog_charset'));
     $options = defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : 0;
     echo json_encode($response, $options);
@@ -98,6 +96,6 @@ function api_send_json($response) {
  * @param  string $msg
  * @return void
  */
-function api_send_error($msg) {
-    api_send_json(array('errors' => array(array('title' => $msg))));
+function p7i_api_send_error($msg) {
+    p7i_api_send_json(array('errors' => array(array('title' => $msg))));
 }
