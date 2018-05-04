@@ -19,15 +19,7 @@ foreach ((array) glob(P7I_DIR . '/lib/*.php') as $file) {
 }
 
 add_action('admin_head-widgets.php', 'p7i_prevent_delete_inactive_widgets');
-
-if (p7i_is_active_theme()) {
-    return;
-}
-
-add_action('plugins_loaded', 'p7i_test_drive_init');
 add_action('wp_ajax_ppi_api', 'p7i_api_route_request');
-add_action('admin_menu', 'p7i_add_menu_item');
-add_action('load-toplevel_page_p7-installer', 'p7i_admin_page_init');
-add_action('admin_enqueue_scripts', 'p7i_pointer_init');
+add_action('plugins_loaded', 'p7i_init');
 add_action('pp_container_binding', 'p7i_container_bindings');
 register_deactivation_hook(__FILE__, 'p7i_deactivation');

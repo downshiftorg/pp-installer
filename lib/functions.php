@@ -1,5 +1,16 @@
 <?php
 
+function p7i_init() {
+    if (p7i_is_active_theme()) {
+        return;
+    }
+
+    p7i_test_drive_init();
+    add_action('admin_menu', 'p7i_add_menu_item');
+    add_action('load-toplevel_page_p7-installer', 'p7i_admin_page_init');
+    add_action('admin_enqueue_scripts', 'p7i_pointer_init');
+}
+
 /**
  * Get the unique installer plugin registration data, if available
  *

@@ -19,7 +19,7 @@ function p7i_pointer_init() {
 
    wp_localize_script('ppi_pointer', 'ppi_pointer', array(
       'content' => p7i_pointer_markup(),
-      'target' => '.toplevel_page_prophoto-installer > a',
+      'target' => '.toplevel_page_p7-installer > a',
       'position' => array(
          'edge' => 'left',
          'align' => 'middle',
