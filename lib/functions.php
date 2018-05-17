@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Check if the P6 installer plugin is active
+ *
+ * @return booelan
+ */
+function p7i_p6_installer_active() {
+    $activePlugins = get_option('active_plugins');
+    return in_array('pp-installer-prophoto6/pp-installer.php', $activePlugins);
+}
+
+/**
  * Get the unique installer plugin registration data, if available
  *
  * @return string|null
