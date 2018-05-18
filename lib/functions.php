@@ -6,8 +6,17 @@
  * @return booelan
  */
 function p7i_p6_installer_active() {
-    $activePlugins = get_option('active_plugins');
-    return in_array('pp-installer-prophoto6/pp-installer.php', $activePlugins);
+    if (!function_exists('get_plugins')) {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
+    $plugins = get_plugins();
+    foreach ($plugins as $path => $plugin) {
+        if ($plugin['Name'] !== 'ProPhoto 6 Installer') {
+            continue;
+        }
+        return is_plugin_active($path);
+    }
+    return false;
 }
 
 /**

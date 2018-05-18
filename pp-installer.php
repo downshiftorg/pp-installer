@@ -26,10 +26,6 @@ if (p7i_is_active_theme()) {
 
 if (p7i_p6_installer_active()) {
     add_action('admin_notices', 'p7i_notice_disable_p6_installer');
-    if (!function_exists('deactive_plugins')) {
-        require_once ABSPATH . 'wp-admin/includes/plugin.php';
-    }
-    deactivate_plugins(plugin_basename(__FILE__));
     return;
 }
 
