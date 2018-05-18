@@ -28,3 +28,10 @@ function p7i_notice_test_driving() {
 function p7i_notice_test_drive_disabled() {
     include P7I_DIR . '/views/notice-test-drive-disabled.php';
 }
+
+/**
+ * Admin notice to disable p6 installer plugin
+ */
+function p7i_notice_disable_p6_installer() {
+    include P7I_DIR . '/views/notice-disable-p6-installer.php';
+}

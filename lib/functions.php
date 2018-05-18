@@ -1,6 +1,25 @@
 <?php
 
 /**
+ * Check if the P6 installer plugin is active
+ *
+ * @return booelan
+ */
+function p7i_p6_installer_active() {
+    if (!function_exists('get_plugins')) {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
+    $plugins = get_plugins();
+    foreach ($plugins as $path => $plugin) {
+        if ($plugin['Name'] !== 'ProPhoto 6 Installer') {
+            continue;
+        }
+        return is_plugin_active($path);
+    }
+    return false;
+}
+
+/**
  * Get the unique installer plugin registration data, if available
  *
  * @return string|null
