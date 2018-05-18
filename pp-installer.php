@@ -8,8 +8,6 @@ Version: 7.0.1
 Author URI: https://pro.photo
 License: MIT
  */
-@ini_set('display_errors', 1);
-error_reporting(E_ALL);
 define('P7I_DIR', dirname(__FILE__));
 define('P7I_URL', plugin_dir_url(__FILE__));
 defined('PROPHOTO_API_URL') || define('PROPHOTO_API_URL', 'https://api.pro.photo');
