@@ -26,7 +26,9 @@ function p7i_notice_test_driving() {
  * @return void
  */
 function p7i_notice_test_drive_disabled() {
+    ob_start();
     include P7I_DIR . '/views/notice-test-drive-disabled.php';
+    return ob_get_clean();
 }
 
 /**

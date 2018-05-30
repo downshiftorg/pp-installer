@@ -150,5 +150,5 @@ function p7i_bootstrap_js() {
  * @return string
  */
 function p7i_get_admin_page_url() {
-    return admin_url('admin.php?page=prophoto-installer');
+    return admin_url('admin.php?page=p7-installer');
 }
