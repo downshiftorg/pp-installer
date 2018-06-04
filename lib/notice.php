@@ -17,6 +17,16 @@ function p7i_notice_test_driving() {
         return;
     }
 
+    // don't show on the installer/test-drive plugin page
+    if (isset($_GET['page']) && $_GET['page'] === 'p7-installer') {
+        return;
+    }
+
+    // don't show if the theme has just gone live
+    if (isset($_GET['ppi_go_live']) && $_GET['ppi_go_live']) {
+        return;
+    }
+
     include P7I_DIR . '/views/notice-test-driving.php';
 }
 

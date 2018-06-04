@@ -18,9 +18,25 @@ function p7i_admin_page_init() {
  * @return void
  */
 function p7i_add_menu_item() {
+    if (p7i_is_installed()) {
+        // dont show if the theme just went live
+        if (isset($_GET['ppi_go_live']) && $_GET['ppi_go_live']) {
+            return;
+        }
+        add_menu_page(
+            'ProPhoto Installer',
+            'P7 Test Drive',
+            'edit_theme_options',
+            'p7-installer',
+            'p7i_render_admin_page',
+            '',
+            '50'
+        );
+        return;
+    }
     add_menu_page(
         'ProPhoto Installer',
-        p7i_is_installed() ? 'P7 Test Drive' : 'P7 Installer',
+        'P7 Installer',
         'edit_theme_options',
         'p7-installer',
         'p7i_render_admin_page',
