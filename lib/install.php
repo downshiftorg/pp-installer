@@ -108,9 +108,7 @@ function p7i_prep_install() {
 
     // try to bump memory limit for download/unzip to 512M if possible
     @ini_set('memory_limit', WP_MAX_MEMORY_LIMIT);
-    add_filter('admin_memory_limit', function () {
-        return "512M";
-    });
+    add_filter('admin_memory_limit', 'p7i_bump_mem_limit');
 
     // initialize the $wp_filesystem global object
     WP_Filesystem();
@@ -118,4 +116,13 @@ function p7i_prep_install() {
     add_action('http_api_curl', 'p7i_set_ssl_version');
 
     @ini_set('max_execution_time', 300);
+}
+
+/**
+ * Get the new allowed memory limit
+ * 
+ * @return string
+ */
+function p7i_bump_mem_limit() {
+    return '512M';
 }
