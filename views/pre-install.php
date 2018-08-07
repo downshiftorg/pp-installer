@@ -119,6 +119,19 @@
         </span>
     </li>
     <?php } ?>
+
+    <?php if ($isRunningNextgenPlugin) { ?>
+    <li class="bad">
+        The NextGen Gallery plugin is not currently compatible with ProPhoto 7.
+        <span>
+            Please go to "Plugins" > "Installed Plugins" and deactivate the NextGen Gallery
+            plugin. Then return to this page to proceed with installing ProPhoto 7.  We hope
+            to work around the NextGen incompatabilities at some point in the future, but
+            for the time being, these 2 products do not play nicely together.
+        </span>
+    </li>
+    <?php } ?>
+
 </ul>
 
 <?php if (! $isCompatible) { ?>
