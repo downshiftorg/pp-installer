@@ -154,3 +154,8 @@ function p7i_hosting_compatible() {
 
     return true;
 }
+
+function p7i_is_running_nextgen_plugin() {
+    $activePlugins = get_option('active_plugins');
+    return in_array('nextgen-gallery/nggallery.php', $activePlugins);
+}

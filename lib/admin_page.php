@@ -58,6 +58,7 @@ function p7i_render_admin_page() {
     $domIsCompatible = p7i_dom_compatible();
     $mysqlCompatible = p7i_mysql_permission_compatible();
     $hostingCompatible = p7i_hosting_compatible();
+    $isRunningNextgenPlugin = p7i_is_running_nextgen_plugin();
 
     $isCompatible = $phpIsCompatible
         && $wpIsCompatible
@@ -65,7 +66,8 @@ function p7i_render_admin_page() {
         && $jsonIsCompatible
         && $domIsCompatible
         && $mysqlCompatible
-        && $hostingCompatible;
+        && $hostingCompatible
+        && ! $isRunningNextgenPlugin;
 
     include(P7I_DIR . '/views/google-tag-manager.php');
 
