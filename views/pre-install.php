@@ -15,11 +15,9 @@
         <span>
             Please contact your webhost tech support and have them upgrade your
             server to use a faster, safer, and more modern version of PHP.
-            Tell them you need to be running at least PHP version 5.4.0, but
-            5.6 or higher is even better, because each newer version gets faster
-            and more secure. If your host offers PHP 7.0 or 7.1 make sure you get
-            on one of those versions, as they are nearly twice as fast as older
-            versions.
+            Tell them you need to be running at least PHP version 5.6.20, but
+            the highest version of PHP 7 that your hosts offers would be best,
+            because each newer version gets faster and more secure.
         </span>
     </li>
     <?php } ?>
