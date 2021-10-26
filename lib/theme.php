@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Get the ProPhoto 7 Theme object
+ * Get the ProPhoto 8 Theme object
  *
  * The documentation for wp_get_themes() says it is expensive, so
  * we cache the result with a local static variable for performance
  *
  * @return WP_Theme|null
  */
-function p7i_get_theme() {
+function p8i_get_theme() {
     static $prophoto = false;
 
     if (false !== $prophoto) {
@@ -16,7 +16,7 @@ function p7i_get_theme() {
     }
 
     foreach (wp_get_themes() as $theme) {
-        if ((string) $theme === 'ProPhoto 7') {
+        if ((string) $theme === 'ProPhoto 8') {
             $prophoto = $theme;
             return $prophoto;
         }
@@ -28,12 +28,12 @@ function p7i_get_theme() {
 
 
 /**
- * Is ProPhoto 7 the current active (not test-driven) theme?
+ * Is ProPhoto 8 the current active (not test-driven) theme?
  *
  * @return boolean
  */
-function p7i_is_active_theme() {
-    $prophoto = p7i_get_theme();
+function p8i_is_active_theme() {
+    $prophoto = p8i_get_theme();
     if (! $prophoto) {
         return false;
     }
@@ -42,12 +42,12 @@ function p7i_is_active_theme() {
 }
 
 /**
- * Is ProPhoto 7 installed?
+ * Is ProPhoto 8 installed?
  *
  * @return boolean
  */
-function p7i_is_installed() {
-    return !!p7i_get_theme();
+function p8i_is_installed() {
+    return !!p8i_get_theme();
 }
 
 /**
@@ -60,7 +60,7 @@ function p7i_is_installed() {
  * @param string|null $template
  * @return string
  */
-function p7i_get_theme_name($template = null) {
+function p8i_get_theme_name($template = null) {
     $theme = wp_get_theme($template);
     if ((string) $theme === 'ProPhoto') {
         return 'ProPhoto ' . intval($theme->get('Version'));
@@ -74,8 +74,8 @@ function p7i_get_theme_name($template = null) {
  *
  * @return string
  */
-function p7i_get_non_test_drive_theme_name() {
-    return p7i_get_theme_name(get_option('template'));
+function p8i_get_non_test_drive_theme_name() {
+    return p8i_get_theme_name(get_option('template'));
 }
 
 /**
@@ -83,8 +83,8 @@ function p7i_get_non_test_drive_theme_name() {
  *
  * @return string
  */
-function p7i_activate_link() {
-    $slug = p7i_get_theme_slug();
+function p8i_activate_link() {
+    $slug = p8i_get_theme_slug();
     $url = 'themes.php?action=activate&amp;stylesheet=' . urlencode($slug);
     $activateLink = wp_nonce_url($url, 'switch-theme_' . $slug);
     return $activateLink;
@@ -95,8 +95,8 @@ function p7i_activate_link() {
  *
  * @return string
  */
-function p7i_get_theme_slug() {
-    $theme = p7i_get_theme();
+function p8i_get_theme_slug() {
+    $theme = p8i_get_theme();
     if (! $theme) {
         return null;
     }

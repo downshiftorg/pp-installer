@@ -24,7 +24,7 @@
   }
 
   /**
-   * Process successful installation of ProPhoto 7
+   * Process successful installation of ProPhoto 8
    *
    * @return {void}
    */
@@ -34,7 +34,7 @@
   }
 
   /**
-   * Process failure to install ProPhoto 7
+   * Process failure to install ProPhoto 8
    *
    * @return {void}
    */

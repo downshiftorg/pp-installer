@@ -5,10 +5,10 @@
  *
  * @return void
  */
-function p7i_admin_page_init() {
-    wp_enqueue_style('p7i_css', P7I_URL . 'css/admin.css', array(), time());
-    wp_enqueue_script('p7i_js', P7I_URL . 'js/admin.js', array(), time());
-    add_action('admin_head', 'p7i_bootstrap_js');
+function p8i_admin_page_init() {
+    wp_enqueue_style('p8i_css', P8I_URL . 'css/admin.css', array(), time());
+    wp_enqueue_script('p8i_js', P8I_URL . 'js/admin.js', array(), time());
+    add_action('admin_head', 'p8i_bootstrap_js');
 }
 
 
@@ -17,18 +17,18 @@ function p7i_admin_page_init() {
  *
  * @return void
  */
-function p7i_add_menu_item() {
-    if (p7i_is_installed()) {
+function p8i_add_menu_item() {
+    if (p8i_is_installed()) {
         // dont show if the theme just went live
         if (isset($_GET['ppi_go_live']) && $_GET['ppi_go_live']) {
             return;
         }
         add_menu_page(
             'ProPhoto Installer',
-            'P7 Test Drive',
+            'P8 Test Drive',
             'edit_theme_options',
-            'p7-installer',
-            'p7i_render_admin_page',
+            'p8-installer',
+            'p8i_render_admin_page',
             '',
             '50'
         );
@@ -36,10 +36,10 @@ function p7i_add_menu_item() {
     }
     add_menu_page(
         'ProPhoto Installer',
-        'P7 Installer',
+        'P8 Installer',
         'edit_theme_options',
-        'p7-installer',
-        'p7i_render_admin_page',
+        'p8-installer',
+        'p8i_render_admin_page',
         '',
         '50'
     );
@@ -50,15 +50,15 @@ function p7i_add_menu_item() {
  *
  * @return void
  */
-function p7i_render_admin_page() {
-    $phpIsCompatible = p7i_php_compatible();
-    $wpIsCompatible = p7i_wp_compatible();
-    $gdIsCompatible = p7i_gd_compatible();
-    $jsonIsCompatible = p7i_json_compatible();
-    $domIsCompatible = p7i_dom_compatible();
-    $mysqlCompatible = p7i_mysql_permission_compatible();
-    $hostingCompatible = p7i_hosting_compatible();
-    $isRunningNextgenPlugin = p7i_is_running_nextgen_plugin();
+function p8i_render_admin_page() {
+    $phpIsCompatible = p8i_php_compatible();
+    $wpIsCompatible = p8i_wp_compatible();
+    $gdIsCompatible = p8i_gd_compatible();
+    $jsonIsCompatible = p8i_json_compatible();
+    $domIsCompatible = p8i_dom_compatible();
+    $mysqlCompatible = p8i_mysql_permission_compatible();
+    $hostingCompatible = p8i_hosting_compatible();
+    $isRunningNextgenPlugin = p8i_is_running_nextgen_plugin();
 
     $isCompatible = $phpIsCompatible
         && $wpIsCompatible
@@ -69,19 +69,19 @@ function p7i_render_admin_page() {
         && $hostingCompatible
         && ! $isRunningNextgenPlugin;
 
-    include(P7I_DIR . '/views/google-tag-manager.php');
+    include(P8I_DIR . '/views/google-tag-manager.php');
 
-    if (! $isCompatible || ! p7i_is_installed()) {
-        include(P7I_DIR . '/views/pre-install.php');
+    if (! $isCompatible || ! p8i_is_installed()) {
+        include(P8I_DIR . '/views/pre-install.php');
         return;
     }
 
-    if (p7i_test_driving()) {
-        p7i_render_test_driving_page();
+    if (p8i_test_driving()) {
+        p8i_render_test_driving_page();
         return;
     }
 
-    p7i_render_installed_page();
+    p8i_render_installed_page();
 
 }
 
@@ -90,11 +90,11 @@ function p7i_render_admin_page() {
  *
  * @return void
  */
-function p7i_render_test_driving_page() {
+function p8i_render_test_driving_page() {
     $disableTestDriveUrl = admin_url('?ppi_disable_test_drive=1');
     $goLiveUrl = admin_url('themes.php?activated=true&ppi_go_live=1');
-    $nonTestDriveTheme = p7i_get_non_test_drive_theme_name();
-    include(P7I_DIR . '/views/test-driving.php');
+    $nonTestDriveTheme = p8i_get_non_test_drive_theme_name();
+    include(P8I_DIR . '/views/test-driving.php');
 }
 
 /**
@@ -102,10 +102,10 @@ function p7i_render_test_driving_page() {
  *
  * @return void
  */
-function p7i_render_installed_page() {
+function p8i_render_installed_page() {
     $testDriveUrl = admin_url('?ppi_enable_test_drive=1');
-    $activateUrl = p7i_activate_link();
-    include(P7I_DIR . '/views/installed.php');
+    $activateUrl = p8i_activate_link();
+    include(P8I_DIR . '/views/installed.php');
 }
 
 /**
@@ -113,14 +113,14 @@ function p7i_render_installed_page() {
  *
  * @return void
  */
-function p7i_render_recommendations() {
-    $phpOutdated = version_compare('7.0', PHP_VERSION) === 1;
+function p8i_render_recommendations() {
+    $phpOutdated = version_compare('7.3', PHP_VERSION) === 1;
     $memoryLimit = (int) ini_get('memory_limit');
     $memoryLimitLow = $memoryLimit < 256;
     $missingImagick = !class_exists('Imagick');
 
     if ($phpOutdated || $memoryLimitLow || $missingImagick) {
-        include(P7I_DIR . '/views/recommendations.php');
+        include(P8I_DIR . '/views/recommendations.php');
     }
 }
 
@@ -129,14 +129,14 @@ function p7i_render_recommendations() {
  *
  * @return void
  */
-function p7i_render_install_or_test_drive() {
-    if (p7i_is_installed()) {
-        p7i_render_test_drive();
+function p8i_render_install_or_test_drive() {
+    if (p8i_is_installed()) {
+        p8i_render_test_drive();
         return;
     }
 
-    if (p7i_get_registration()) {
-        p7i_render_install_from_registration();
+    if (p8i_get_registration()) {
+        p8i_render_install_from_registration();
         return;
     }
 }
@@ -146,8 +146,8 @@ function p7i_render_install_or_test_drive() {
  *
  * @return void
  */
-function p7i_render_install_from_registration() {
-    include(P7I_DIR . '/views/install-from-registration.php');
+function p8i_render_install_from_registration() {
+    include(P8I_DIR . '/views/install-from-registration.php');
 }
 
 /**
@@ -155,11 +155,11 @@ function p7i_render_install_from_registration() {
  *
  * @return void
  */
-function p7i_bootstrap_js() {
-    list($lineItemId, $userToken) = p7i_get_registration();
+function p8i_bootstrap_js() {
+    list($lineItemId, $userToken) = p8i_get_registration();
     $ajaxUrl = admin_url('admin-ajax.php');
 
-    include(P7I_DIR . '/views/bootstrap-js.php');
+    include(P8I_DIR . '/views/bootstrap-js.php');
 }
 
 /**
@@ -167,6 +167,6 @@ function p7i_bootstrap_js() {
  *
  * @return string
  */
-function p7i_get_admin_page_url() {
-    return admin_url('admin.php?page=p7-installer');
+function p8i_get_admin_page_url() {
+    return admin_url('admin.php?page=p8-installer');
 }
