@@ -5,25 +5,25 @@
  *
  * @return array
  */
-function p7i_install() {
-    p7i_prep_install();
-    list($lineItemId, $userToken) = p7i_get_registration();
+function p8i_install() {
+    p8i_prep_install();
+    list($lineItemId, $userToken) = p8i_get_registration();
     $endpoint = PROPHOTO_API_URL . "/line-items/{$lineItemId}/download";
     $url = $endpoint .= "?user_token={$userToken}&installer=0";
     $file = download_url($url);
 
     if (is_wp_error($file)) {
-        return p7i_install_wp_error($file);
+        return p8i_install_wp_error($file);
     }
 
-    if (! p7i_is_zip($file)) {
-        return p7i_install_pp_error($file);
+    if (! p8i_is_zip($file)) {
+        return p8i_install_pp_error($file);
     }
 
     $result = unzip_file($file, get_theme_root() . '/');
 
     if (is_wp_error($result)) {
-        return p7i_install_wp_error($result);
+        return p8i_install_wp_error($result);
     }
 
     return array('success' => true);
@@ -36,7 +36,7 @@ function p7i_install() {
  * @param  resource $handle
  * @return void
  */
-function p7i_set_ssl_version($handle) {
+function p8i_set_ssl_version($handle) {
     curl_setopt($handle, CURLOPT_SSLVERSION, 1);
 }
 
@@ -50,7 +50,7 @@ function p7i_set_ssl_version($handle) {
  * @param string $file
  * @return boolean
  */
-function p7i_is_zip($file) {
+function p8i_is_zip($file) {
     $handle = fopen($file, 'rb');
     $first = fread($handle, 2);
     fclose($handle);
@@ -69,7 +69,7 @@ function p7i_is_zip($file) {
  * @param WP_Error $error
  * @return array
  */
-function p7i_install_wp_error($error) {
+function p8i_install_wp_error($error) {
     return array(
         'success' => false,
         'message' => $error->get_error_message(),
@@ -82,13 +82,13 @@ function p7i_install_wp_error($error) {
  * @param string $file
  * @return array
  */
-function p7i_install_pp_error($file) {
+function p8i_install_pp_error($file) {
     $data = json_decode(@file_get_contents($file), true);
 
     if (is_array($data) && isset($data['message'])) {
         $message = $data['message'];
     } else {
-        $message = 'Error downloading P7 from ProPhoto site.';
+        $message = 'Error downloading P8 from ProPhoto site.';
     }
 
     return array(
@@ -102,18 +102,18 @@ function p7i_install_pp_error($file) {
  *
  * @return void
  */
-function p7i_prep_install() {
+function p8i_prep_install() {
     // ensure required file functions are loaded
     require_once ABSPATH . 'wp-admin/includes/file.php';
 
     // try to bump memory limit for download/unzip to 512M if possible
     @ini_set('memory_limit', WP_MAX_MEMORY_LIMIT);
-    add_filter('admin_memory_limit', 'p7i_bump_mem_limit');
+    add_filter('admin_memory_limit', 'p8i_bump_mem_limit');
 
     // initialize the $wp_filesystem global object
     WP_Filesystem();
 
-    add_action('http_api_curl', 'p7i_set_ssl_version');
+    add_action('http_api_curl', 'p8i_set_ssl_version');
 
     @ini_set('max_execution_time', 300);
 }
@@ -123,6 +123,6 @@ function p7i_prep_install() {
  * 
  * @return string
  */
-function p7i_bump_mem_limit() {
+function p8i_bump_mem_limit() {
     return '512M';
 }

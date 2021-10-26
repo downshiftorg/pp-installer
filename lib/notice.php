@@ -5,10 +5,10 @@
  *
  * @return void
  */
-function p7i_notice_test_driving() {
-    if (p7i_not_registered()) {
+function p8i_notice_test_driving() {
+    if (p8i_not_registered()) {
         $registerUrl = admin_url('themes.php?activated=true');
-        include P7I_DIR . '/views/notice-test-driving-unregistered.php';
+        include P8I_DIR . '/views/notice-test-driving-unregistered.php';
         return;
     }
 
@@ -18,7 +18,7 @@ function p7i_notice_test_driving() {
     }
 
     // don't show on the installer/test-drive plugin page
-    if (isset($_GET['page']) && $_GET['page'] === 'p7-installer') {
+    if (isset($_GET['page']) && $_GET['page'] === 'p8-installer') {
         return;
     }
 
@@ -27,7 +27,7 @@ function p7i_notice_test_driving() {
         return;
     }
 
-    include P7I_DIR . '/views/notice-test-driving.php';
+    include P8I_DIR . '/views/notice-test-driving.php';
 }
 
 /**
@@ -35,15 +35,15 @@ function p7i_notice_test_driving() {
  *
  * @return void
  */
-function p7i_notice_test_drive_disabled() {
+function p8i_notice_test_drive_disabled() {
     ob_start();
-    include P7I_DIR . '/views/notice-test-drive-disabled.php';
+    include P8I_DIR . '/views/notice-test-drive-disabled.php';
     return ob_get_clean();
 }
 
 /**
  * Admin notice to disable p6 installer plugin
  */
-function p7i_notice_disable_p6_installer() {
-    include P7I_DIR . '/views/notice-disable-p6-installer.php';
+function p8i_notice_disable_p6_installer() {
+    include P8I_DIR . '/views/notice-disable-p6-installer.php';
 }

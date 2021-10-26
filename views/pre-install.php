@@ -1,4 +1,4 @@
-<h1>ProPhoto 7 Installer</h1>
+<h1>ProPhoto 8 Installer</h1>
 
 <hr />
 
@@ -16,7 +16,7 @@
             Please contact your webhost tech support and have them upgrade your
             server to use a faster, safer, and more modern version of PHP.
             Tell them you need to be running at least PHP version 5.6.20, but
-            the highest version of PHP 7 that your host offers would be best,
+            the highest version of PHP 8 that your host offers would be best,
             because each newer version gets faster and more secure.
         </span>
     </li>
@@ -30,9 +30,9 @@
     <li class="bad">
         Your WordPress version is not compatible.
         <span>
-            ProPhoto 7 requires that you are running a very recent version of
+            ProPhoto 8 requires that you are running a very recent version of
             WordPress, which is also the most effective method of keeping your
-            website safe and secure from attacks. Before you can use ProPhoto 7,
+            website safe and secure from attacks. Before you can use ProPhoto 8,
             you'll need to <a href="<?php echo admin_url('update-core.php'); ?>">
             update your WordPress version</a>.
         </span>
@@ -120,10 +120,10 @@
 
     <?php if ($isRunningNextgenPlugin) { ?>
     <li class="bad">
-        The NextGen Gallery plugin is not currently compatible with ProPhoto 7.
+        The NextGen Gallery plugin is not currently compatible with ProPhoto 8.
         <span>
             Please go to "Plugins" > "Installed Plugins" and deactivate the NextGen Gallery
-            plugin. Then return to this page to proceed with installing ProPhoto 7.  We hope
+            plugin. Then return to this page to proceed with installing ProPhoto 8.  We hope
             to work around the NextGen incompatabilities at some point in the future, but
             for the time being, these 2 products do not play nicely together.
         </span>
@@ -134,17 +134,17 @@
 
 <?php if (! $isCompatible) { ?>
 <p>
-    Sorry, your site is not yet ready to use ProPhoto 7. Please read the
+    Sorry, your site is not yet ready to use ProPhoto 8. Please read the
     above area(s) highlighted in red, and work with your webhost technical support
     to resolve them. Once you've gotten everything green, this page will change
-    and show you more options for continuing with the installation of ProPhoto 7.
+    and show you more options for continuing with the installation of ProPhoto 8.
 </p>
 
 <?php return; } ?>
 <p>
-    Huzzah! Your site is totally compatible with ProPhoto 7.
+    Huzzah! Your site is totally compatible with ProPhoto 8.
 </p>
 
-<?php if (! get_option('ppi_hide_recommendations') ) p7i_render_recommendations(); ?>
+<?php if (! get_option('ppi_hide_recommendations') ) p8i_render_recommendations(); ?>
 
-<?php p7i_render_install_or_test_drive(); ?>
+<?php p8i_render_install_or_test_drive(); ?>

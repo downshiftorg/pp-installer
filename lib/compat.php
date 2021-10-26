@@ -5,8 +5,8 @@
  *
  * @return boolean
  */
-function p7i_php_compatible() {
-    if (version_compare('5.6.20', PHP_VERSION) === 1) {
+function p8i_php_compatible() {
+    if (version_compare('7.3.0', PHP_VERSION) === 1) {
         return false;
     }
 
@@ -18,7 +18,7 @@ function p7i_php_compatible() {
  *
  * @return boolean
  */
-function p7i_wp_compatible() {
+function p8i_wp_compatible() {
     return function_exists('rest_url');
 }
 
@@ -27,7 +27,7 @@ function p7i_wp_compatible() {
  *
  * @return boolean
  */
-function p7i_gd_compatible() {
+function p8i_gd_compatible() {
     return function_exists('imagecreatetruecolor');
 }
 
@@ -36,7 +36,7 @@ function p7i_gd_compatible() {
  *
  * @return boolean
  */
-function p7i_json_compatible() {
+function p8i_json_compatible() {
     return extension_loaded('json');
 }
 
@@ -45,7 +45,7 @@ function p7i_json_compatible() {
  *
  * @return boolean
  */
-function p7i_dom_compatible() {
+function p8i_dom_compatible() {
     return extension_loaded('dom');
 }
 
@@ -56,7 +56,7 @@ function p7i_dom_compatible() {
  * @param string $db
  * @return boolean
  */
-function p7i_mysql_grant_compatible($grant, $db) {
+function p8i_mysql_grant_compatible($grant, $db) {
     $escaped = str_replace('_', '\_', $db);
     $wildcard = preg_replace('/_([\w-]+)/', '__', $escaped);
 
@@ -84,19 +84,19 @@ function p7i_mysql_grant_compatible($grant, $db) {
  *
  * @return boolean
  */
-function p7i_mysql_permission_compatible() {
+function p8i_mysql_permission_compatible() {
     global $wpdb;
     $db = DB_NAME;
     $grants = $wpdb->get_results('SHOW GRANTS FOR CURRENT_USER', ARRAY_A);
 
     foreach ($grants as $row) {
         $grant = current($row);
-        if (p7i_mysql_grant_compatible($grant, $db)) {
+        if (p8i_mysql_grant_compatible($grant, $db)) {
             return true;
         }
     }
 
-    return p7i_can_create_alter_drop_table();
+    return p8i_can_create_alter_drop_table();
 }
 
 /**
@@ -104,7 +104,7 @@ function p7i_mysql_permission_compatible() {
  *
  * @return boolean
  */
-function p7i_can_create_alter_drop_table() {
+function p8i_can_create_alter_drop_table() {
     global $wpdb;
     $wpdb->suppress_errors();
     $testTable = "{$wpdb->prefix}ppi_priv_test";
@@ -138,8 +138,8 @@ function p7i_can_create_alter_drop_table() {
  *
  * @return boolean
  */
-function p7i_hosting_compatible() {
-    $domain = p7i_extract_domain(home_url());
+function p8i_hosting_compatible() {
+    $domain = p8i_extract_domain(home_url());
     if (! $domain) {
         return true;
     }
@@ -155,7 +155,7 @@ function p7i_hosting_compatible() {
     return true;
 }
 
-function p7i_is_running_nextgen_plugin() {
+function p8i_is_running_nextgen_plugin() {
     $activePlugins = get_option('active_plugins');
     return in_array('nextgen-gallery/nggallery.php', $activePlugins);
 }

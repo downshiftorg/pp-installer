@@ -5,7 +5,7 @@
  *
  * @return void
  */
-function p7i_pointer_init() {
+function p8i_pointer_init() {
    $userId = get_current_user_id();
    $dismissed = explode(',', (string) get_user_meta($userId, 'dismissed_wp_pointers', true));
 
@@ -15,10 +15,10 @@ function p7i_pointer_init() {
 
    wp_enqueue_script('wp-pointer');
    wp_enqueue_style('wp-pointer');
-   wp_enqueue_script('ppi_pointer', P7I_URL . 'js/pointer.js');
+   wp_enqueue_script('ppi_pointer', P8I_URL . 'js/pointer.js');
 
    wp_localize_script('ppi_pointer', 'ppi_pointer', array(
-      'content' => p7i_pointer_markup(),
+      'content' => p8i_pointer_markup(),
       'target' => '.toplevel_page_prophoto-installer > a',
       'position' => array(
          'edge' => 'left',
@@ -32,8 +32,8 @@ function p7i_pointer_init() {
  *
  * @return string
  */
-function p7i_pointer_markup() {
+function p8i_pointer_markup() {
    $markup  = '<h3>ProPhoto Installer</h3>';
-   $markup .= '<p>Click here to download, test-drive, and activate ProPhoto 7!</p>';
+   $markup .= '<p>Click here to download, test-drive, and activate ProPhoto 8!</p>';
    return $markup;
 }
